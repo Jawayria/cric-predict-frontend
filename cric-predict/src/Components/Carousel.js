@@ -7,7 +7,7 @@ import slider3 from './slider3.jpg';
 
 function Carousel() {
   return (
-  <div class='Slider'>
+  <div>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -16,18 +16,17 @@ function Carousel() {
 
         <div class="carousel-inner">
             <div class="item active">
-                <img class='Image' src={slider2} alt="Chicago" /><div class="carousel-caption">
-                    <h1>Test</h1>
-                    <p>Prepare for the worst!</p>
-                 </div>
+                <img src={slider2} alt="Chicago" />
+                <div class="carousel-content">
+                    <p>This is Dummy text. Just for testing purpose.</p>
+                </div>
             </div>
 
             <div class="item">
-                <img class='Image' src={slider3} alt="New York" />
-                 <div class="carousel-caption">
-                    <h1>Testing</h1>
-                    <p>Hope for the best!</p>
-                 </div>
+                <img src={slider3} alt="New York" />
+                <div class="carousel-content">
+                    <p>This is Dummy text. Just for testing purpose.</p>
+                </div>
             </div>
         </div>
 
