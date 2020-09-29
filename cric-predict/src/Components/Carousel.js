@@ -1,6 +1,4 @@
 import React from 'react';
-import HeaderMenu from './HeaderMenu.js';
-import logo from '../logo.png';
 import '../Stylesheets/App.css'
 import slider2 from './slider2.jpg';
 import slider3 from './slider3.jpg';

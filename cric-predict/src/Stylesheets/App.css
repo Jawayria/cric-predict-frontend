@@ -76,7 +76,7 @@
 }
 
 .carousel-image {
-    top: 11.2vmin;
+    top: 11vmin;
     height: 700px;
 }
 
@@ -152,4 +152,27 @@ h1{
     font-size: 18px;
     font-family:monoscope;
     font-weight: bold;
+}
+
+.form {
+    margin: 20%;
+    margin-top: 70%;
+    padding: 3%;
+    background-color: darkcyan;
+    color: white;
+    font-family: monoscope;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 30px;
+
+}
+
+.nav-tabs {
+
+    background-color: #0744b3;
+    color: white;
+    font-family: monoscope;
+    font-weight: bold;
+    text-align: center;
+
 }
