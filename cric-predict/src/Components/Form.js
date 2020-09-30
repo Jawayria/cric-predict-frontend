@@ -7,24 +7,44 @@ import Carousel from './Carousel.js';
 function Form() {
   return (
 
-<div class="container form" style={{marginTop: 11 + 'vmin'}}>
+<div class="container form" >
+    <h1> Lets Get Started! </h1>
   <ul class="nav nav-tabs" id="myForm">
-      <li><a data-toggle="tab"  href="#one">Login</a></li>
-      <li><a data-toggle="tab" href="#two">Sign Up</a></li>
+      <li class= 'col-sm-6'><a data-toggle="tab"  href="#one">Login</a></li>
+      <li class= 'col-sm-6'><a data-toggle="tab" href="#two">Sign Up</a></li>
       </ul>
 
     <form action="" method="post">
       <div class="tab-content">
         <div class="tab-pane active" id="one">
-          <input type="text" class="form-control" name="name" placeholder="enter name"/>
-          <input type="password" class="form-control" name="password" placeholder="enter password"/>
-          <button type="submit" class="btn btn-success">Submit</button>
+        <div class="form-group row" style = {{marginTop: 20+'px'}}>
+            <label for="name" class='col-sm-4 col-form-label'>Username</label>
+            <input type="text" class="form-control col-sm-7" name="name" id='name' placeholder="Enter Name"/>
+        </div>
+        <div class="form-group row">
+            <label for="password" class='col-sm-4 col-form-label'>Password</label>
+            <input type="password" class="form-control col-sm-7" name="password" id='password' placeholder="Enter Password"/>
+        </div>
+        <div class="form-group  justify-content-center">
+            <button type="submit" class="btn btn-success submit-button">Submit</button>
+        </div>
         </div>
         <div class="tab-pane" id="two">
-          <input type="text" class="form-control" name="name" placeholder="enter name"/>
-          <input type="password" class="form-control" name="password" placeholder="enter password"/>
-          <input type="password" class="form-control" name="password2" placeholder="confirm password"/>
-          <button type="submit" class="btn btn-success">Submit</button>
+        <div class="form-group row" style = {{marginTop: 20+'px'}}>
+            <label for="name" class='col-sm-4 col-form-label'>Username</label>
+            <input type="text" class="form-control col-sm-7" name="name" placeholder="Enter Name"/>
+        </div>
+        <div class="form-group row">
+            <label for="password" class='col-sm-4 col-form-label'>Password</label>
+            <input type="password" class="form-control col-sm-7" name="password" id='password' placeholder="Enter Password"/>
+        </div>
+        <div class="form-group row">
+            <label for="password2" class='col-sm-4 col-form-label'>Confirm Password</label>
+            <input type="password" class="form-control col-sm-7" name="password2" id='password2' placeholder="Confirm Password"/>
+        </div>
+        <div class="form-group justify-content-center">
+            <center><button type="submit" class="btn btn-success submit-button">Submit</button></center>
+        </div>
 
         </div>
         </div>

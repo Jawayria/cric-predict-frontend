@@ -21,12 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ff5fa96d-0891-4a86-82af-6a4ebc27a7d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cric-predict/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cric-predict/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cric-predict/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cric-predict/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cric-predict/src/Components/Carousel.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Components/Carousel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cric-predict/src/Components/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Components/Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cric-predict/src/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Components/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cric-predict/src/Components/HeaderMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Components/HeaderMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cric-predict/src/Components/LoginSignup.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Components/LoginSignup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cric-predict/src/Stylesheets/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/Stylesheets/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cric-predict/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cric-predict/src/index.js" afterDir="false" />
     </list>
@@ -75,5 +74,11 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="774" y="467" width="428" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601453671202">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="774" y="467" width="428" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601453671202" />
   </component>
 </project>

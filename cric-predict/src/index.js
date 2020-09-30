@@ -4,11 +4,12 @@ import './Stylesheets/index.css';
 import App from './App';
 import LoginSignup from './Components/LoginSignup';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
+   <Router>
     <LoginSignup />
-  </React.StrictMode>,
+   </Router>,
   document.getElementById('root')
 );
 
