@@ -6,35 +6,35 @@ import slider3 from './slider3.jpg';
 function Carousel() {
   return (
   <div>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <div id="myCarousel" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
         </ol>
 
-        <div class="carousel-inner">
-            <div class="item active">
+        <div className="carousel-inner">
+            <div className="item active">
                 <img src={slider2} alt="Chicago" />
-                <div class="carousel-content">
+                <div className="carousel-content">
                     <p>This is Dummy text. Just for testing purpose.</p>
                 </div>
             </div>
 
-            <div class="item">
+            <div className="item">
                 <img src={slider3} alt="New York" />
-                <div class="carousel-content">
+                <div className="carousel-content">
                     <p>This is Dummy text. Just for testing purpose.</p>
                 </div>
             </div>
         </div>
 
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
+        <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span className="glyphicon glyphicon-chevron-left"></span>
+            <span className="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
+        <a className="right carousel-control" href="#myCarousel" data-slide="next">
+            <span className="glyphicon glyphicon-chevron-right"></span>
+            <span className="sr-only">Next</span>
         </a>
     </div>
     </div>
