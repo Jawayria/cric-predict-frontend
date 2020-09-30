@@ -156,23 +156,73 @@ h1{
 
 .form {
     margin: 20%;
-    margin-top: 70%;
-    padding: 3%;
+    margin-left: 35%;
+    margin-top: 15%;
+    padding: 2%;
     background-color: darkcyan;
     color: white;
     font-family: monoscope;
     font-weight: bold;
     text-align: center;
     border-radius: 30px;
+    width: 30%;
+}
 
+.nav {
+    border-radius: 20px;
 }
 
 .nav-tabs {
 
     background-color: #0744b3;
-    color: white;
     font-family: monoscope;
     font-weight: bold;
     text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
 
+.col-form-label {
+    vertical-align: center;
+    font-size: 15px;
+    float: left;
+    height: 40px;
+}
+
+.form-control {
+    height: 40px;
+    font-size: 15px;
+}
+
+.submit-button {
+    height: 40px;
+    font-size: 15px;
+    font-family: monoscope;
+    font-weight: bold;
+    margin-top: 20px;
+    background-color: #0744b3;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.image-background {
+
+  /* The image used */
+  background-image: url("../Components/bg1.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.form-container {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
 }
