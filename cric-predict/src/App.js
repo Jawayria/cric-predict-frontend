@@ -4,7 +4,10 @@ import Header from './Components/Header.js';
 import Carousel from './Components/Carousel.js';
 import Leagues from './Components/Leagues.js';
 import LoginSignup from './Components/LoginSignup.js';
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import Home from './Components/Home.js';
+import Rules from './Components/Rules.js';
+import {BrowserRouter as Router, Link, Route, Switch, Redirect} from 'react-router-dom';
+
 function App() {
   return (
     <div>
@@ -12,8 +15,10 @@ function App() {
         <Carousel />
         <Leagues />
         <Switch>
-            <Route path="/leagues" component={Leagues} />
-            <Route path="/login" component={LoginSignup} />
+            <Route path="/" component={Home} render={() => <Redirect to="./Components/Home"/>} />
+            <Route path="/rules" component={Rules} render={() => <Redirect to="./Components/Rules"/>} />
+            <Route path="/leagues" component={Leagues} render={() => <Redirect to="./Components/Leagues"/>} />
+            <Route path="/login" component={LoginSignup} render={() => <Redirect to="./Components/LoginSignup"/>} />
         </Switch>
     </div>
   );

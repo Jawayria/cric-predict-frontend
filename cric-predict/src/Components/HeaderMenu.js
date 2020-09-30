@@ -1,16 +1,16 @@
 import React from 'react';
 import '../Stylesheets/App.css'
-import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch, Redirect} from 'react-router-dom';
 import LoginSignup from './LoginSignup';
-import Home from '../App';
+import App from '../App';
 
 function HeaderMenuComponent() {
   return (
         <ul class='navbar-nav Header-menu'>
             <li class='nav-item Header-item'>  <Link to='/'> Home</Link>  </li>
-            <li class='nav-item Header-item'>  <a class="nav-link" href="#">Rules</a>  </li>
-            <li class='nav-item Header-item'>  <a class="nav-link" href="#">Leagues</a>  </li>
-            <Link to='/LoginSignup' class="btn-info btn-lg" >Login | Signup</Link>
+            <li class='nav-item Header-item'>  <Link to='/rules'> Rules</Link>  </li>
+            <li class='nav-item Header-item'>  <Link to='/leagues'>Leagues</Link>  </li>
+            <li><Link to='/login' class="btn-info btn-lg" >Login | Signup</Link></li>
 
         </ul>
   );

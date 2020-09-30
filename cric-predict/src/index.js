@@ -8,7 +8,7 @@ import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 ReactDOM.render(
    <Router>
-    <LoginSignup />
+    <App />
    </Router>,
   document.getElementById('root')
 );
