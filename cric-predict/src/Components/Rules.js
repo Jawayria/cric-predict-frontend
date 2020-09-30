@@ -3,7 +3,7 @@ import '../Stylesheets/App.css'
 
 function RulesComponent() {
   return (
-  <p>Rules</p>
+  <h2>Rules Component</h2>
   );
 }
 

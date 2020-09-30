@@ -9,12 +9,12 @@ function Leagues() {
 
   matches.forEach((match) => {
     list.push(
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{match}</h5>
-            <p class="card-text">Start Date: 30/9/2020</p>
-            <p class="card-text">End Date: 5/11/2020</p>
+      <div className="col-sm-6">
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{match}</h5>
+            <p className="card-text">Start Date: 30/9/2020</p>
+            <p className="card-text">End Date: 5/11/2020</p>
           </div>
         </div>
       </div>
@@ -22,9 +22,9 @@ function Leagues() {
   })
 
   return (
-  <div class="league-cards">
+  <div className="league-cards">
   <h1> Upcoming Leagues </h1>
-  <div class="row">
+  <div className="row">
       {list}
   </div>
   </div>
