@@ -7,9 +7,9 @@ function Header() {
   return (
   <div>
     <header>
-        <nav class="navbar navbar-expand-sm fixed-top Header">
+        <nav className="navbar navbar-expand-sm fixed-top Header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 class="Title"> CricPredict </h1>
+            <h1 className="Title"> CricPredict </h1>
             <HeaderMenuComponent />
         </nav>
     </header>

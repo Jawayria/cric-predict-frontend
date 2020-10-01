@@ -1,27 +1,30 @@
 import React from 'react';
 import './Stylesheets/App.css';
-import Header from './Components/Header.js';
-import Carousel from './Components/Carousel.js';
-import Leagues from './Components/Leagues.js';
-import LoginSignup from './Components/LoginSignup.js';
 import Home from './Components/Home.js';
-import Rules from './Components/Rules.js';
-import {BrowserRouter as Router, Link, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import Header from "./Components/Header";
+import Rules from "./Components/Rules";
+import Leagues from "./Components/Leagues";
+import LoginSignup from "./Components/LoginSignup";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <div>
-        <Header />
-        <Carousel />
-        <Leagues />
+      <BrowserRouter>
+        <Header/>
         <Switch>
-            <Route path="/" component={Home} render={() => <Redirect to="./Components/Home"/>} />
-            <Route path="/rules" component={Rules} render={() => <Redirect to="./Components/Rules"/>} />
-            <Route path="/leagues" component={Leagues} render={() => <Redirect to="./Components/Leagues"/>} />
-            <Route path="/login" component={LoginSignup} render={() => <Redirect to="./Components/LoginSignup"/>} />
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/rules" component={Rules}/>
+          <Route exact path="/leagues" component={Leagues}/>
+          <Route exact path="/login" component={LoginSignup}/>
+
         </Switch>
-    </div>
+        <Footer/>
+      </BrowserRouter>
   );
 }
 
 export default App;
+
+
+
