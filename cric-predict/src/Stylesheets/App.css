@@ -75,6 +75,11 @@
   height: 700px;
 }
 
+.carousel-image {
+    top: 11.2vmin;
+    height: 700px;
+}
+
 .item img {
     position: absolute;
     top: 0;
