@@ -13,7 +13,7 @@ function CarouselComponent() {
         src={slider2}
         alt="First slide"
         />
-        <div class="carousel-content">
+        <div className="carousel-content">
             <p>This is Dummy text. Just for testing purpose.</p>
         </div>
     </Carousel.Item>
@@ -23,7 +23,7 @@ function CarouselComponent() {
         src={slider3}
         alt="Third slide"
         />
-        <div class="carousel-content">
+        <div className="carousel-content">
             <p>This is Dummy text. Just for testing purpose.</p>
         </div>
     </Carousel.Item>

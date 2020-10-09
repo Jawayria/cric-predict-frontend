@@ -2,8 +2,11 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import {Tabs, Tab, Row, Col, Form, Button } from 'react-bootstrap';
 import Carousel from './Carousel.js';
+import axios from 'axios';
 
-export default class FormComponent extends React.Component {
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+
+class FormComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,22 +14,21 @@ export default class FormComponent extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value}, {[event.target.password]: event.target.value});
+        this.setState({[event.target.name]: event.target.value, [event.target.password]: event.target.value, [event.target.check]:event.target.value});
+        console.log(event.target.value);
     }
 
     handleSubmit = (event) => {
-        alert('A form was submitted: ' + this.state);
-
-        fetch('http://127.0.0.1:8000/api/user/login/', {
-            method: 'POST', mode: 'no-cors',
-            // We convert the React state to JSON and send it as the POST body
-            body: JSON.stringify(this.state)
-          }).then(function(response) {
-            console.log(response)
-            return response.json();
-          });
-
         event.preventDefault();
+        axios.post('http://127.0.0.1:8000/api/user/login/', this.state)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+        this.setState ( {
+            name: '',
+            password: ''
+        })
     }
 
 
@@ -38,12 +40,12 @@ export default class FormComponent extends React.Component {
         <Tabs  id="controlled-tab-example">
           <Tab eventKey="login" title="Login">
             <Form onSubmit={this.handleSubmit}>
-                <Form.Group as={Row} controlId="formPlaintext" style = {{marginTop: 20+'px'}}>
-                    <Form.Label column sm="4" className="col-form-label">
+                <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px'}}>
+                    <Form.Label column sm="4">
                         Username
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="text" placeholder="Username"/>
+                        <Form.Control type="text" value={this.state.name} onChange={this.handleChange} name="name" placeholder="Username" />
                     </Col>
                 </Form.Group>
 
@@ -52,7 +54,7 @@ export default class FormComponent extends React.Component {
                         Password
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="password" placeholder="Password" />
+                        <Form.Control type="password" value={this.state.password} onChange={this.handleChange} name="password" placeholder="Password" />
                     </Col>
                 </Form.Group>
 
@@ -102,3 +104,4 @@ export default class FormComponent extends React.Component {
     }
 }
 
+export default FormComponent;
