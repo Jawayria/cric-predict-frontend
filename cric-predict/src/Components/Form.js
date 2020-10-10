@@ -4,32 +4,31 @@ import {Tabs, Tab, Row, Col, Form, Button } from 'react-bootstrap';
 import Carousel from './Carousel.js';
 import axios from 'axios';
 
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 class FormComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: '', password: ''};
+        this.state = {username: '', password: ''};
     }
 
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value, [event.target.password]: event.target.value, [event.target.check]:event.target.value});
         console.log(event.target.value);
-    }
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://127.0.0.1:8000/api/user/login/', this.state)
+        axios.post('http://localhost:8000/api/token/', {"username": this.state.username, "password": this.state.password})
         .then(res => {
           console.log(res);
           console.log(res.data);
-        })
+        });
         this.setState ( {
             name: '',
             password: ''
         })
-    }
+    };
 
 
     render(){
@@ -45,7 +44,7 @@ class FormComponent extends React.Component {
                         Username
                     </Form.Label>
                     <Col sm="8">
-                        <Form.Control type="text" value={this.state.name} onChange={this.handleChange} name="name" placeholder="Username" />
+                        <Form.Control type="text" value={this.state.username} onChange={this.handleChange} name="username" placeholder="Username" />
                     </Col>
                 </Form.Group>
 
