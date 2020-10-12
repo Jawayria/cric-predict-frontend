@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderMenuComponent from './HeaderMenu.js';
+import HeaderMenu from './HeaderMenu.js';
 import logo from '../logo.png';
 import '../Stylesheets/App.css';
 import Navbar from 'react-bootstrap/Navbar'
@@ -11,7 +11,7 @@ function Header() {
                  <img alt="" src={logo} className="App-logo" />
                      CricPredict
              </Navbar.Brand>
-            <HeaderMenuComponent />
+            <HeaderMenu />
         </Navbar>
   );
 }
