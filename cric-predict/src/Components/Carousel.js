@@ -27,8 +27,7 @@ function CarouselComponent() {
             <p>This is Dummy text. Just for testing purpose.</p>
         </div>
     </Carousel.Item>
-</Carousel>
-  );
+</Carousel>  );
 }
 
 export default CarouselComponent;
