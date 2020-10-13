@@ -83,13 +83,8 @@
 }
 
 .carousel-image {
-<<<<<<< HEAD
-    top: 11vmin;
-    height: 700px;
-=======
     margin-top: 11vmin;
     height:700px;
->>>>>>> Used React-Bootstrap components instead of Bootstrap classes
 }
 
 .item img {
