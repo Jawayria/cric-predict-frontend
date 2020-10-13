@@ -1,9 +1,7 @@
 import React from 'react';
 import '../Stylesheets/App.css'
-import {BrowserRouter as Router, Link, Route, Switch, Redirect} from 'react-router-dom';
-import LoginSignup from './LoginSignup';
-import App from '../App';
-import {Navbar, Nav, NavDropdown, Button}  from 'react-bootstrap';
+import { Link} from 'react-router-dom';
+import {Navbar, Nav, Button}  from 'react-bootstrap';
 
 function HeaderMenuComponent() {
   return (

@@ -4,7 +4,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 
-class SignupFormComponent extends React.Component {
+class SignupComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -69,4 +69,4 @@ class SignupFormComponent extends React.Component {
     }
 }
 
-export default SignupFormComponent;
+export default SignupComponent;

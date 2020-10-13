@@ -226,8 +226,13 @@ h1{
 
 }
 
-
 .form-container {
     height: 89vh;
     padding-top: 12vh;
+}
+
+.footer {
+    margin-top:2px;
+    background-color: black;
+    color:white;
 }

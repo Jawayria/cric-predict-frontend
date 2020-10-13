@@ -4,7 +4,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 
-class LoginFormComponent extends React.Component {
+class LoginComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -59,4 +59,4 @@ class LoginFormComponent extends React.Component {
     }
 }
 
-export default LoginFormComponent;
+export default LoginComponent;

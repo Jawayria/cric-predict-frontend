@@ -7,7 +7,6 @@ function HomeComponent() {
         <div>
             <Carousel/>
             <Leagues />
-            <h2>this is HomePage</h2>
         </div>
     );
 }
