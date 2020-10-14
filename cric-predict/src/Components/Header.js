@@ -1,19 +1,18 @@
 import React from 'react';
 import HeaderMenu from './HeaderMenu.js';
 import logo from '../logo.png';
-import '../Stylesheets/App.css'
+import '../Stylesheets/App.css';
+import Navbar from 'react-bootstrap/Navbar'
 
 function Header() {
   return (
-  <div>
-    <header>
-        <nav class="navbar navbar-expand-sm fixed-top Header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 class="Title"> CricPredict </h1>
+        <Navbar fixed="top" className="Header">
+             <Navbar.Brand className="Title" style={{color:'white'}}>
+                 <img alt="" src={logo} className="App-logo" />
+                     CricPredict
+             </Navbar.Brand>
             <HeaderMenu />
-        </nav>
-    </header>
-   </div>
+        </Navbar>
   );
 }
 

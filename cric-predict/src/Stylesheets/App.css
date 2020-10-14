@@ -3,6 +3,7 @@
 }
 
 .App-logo {
+  margin: 3px;
   height: 10vmin;
   pointer-events: none;
 }
@@ -37,7 +38,8 @@
 
 .Header-menu {
     position : absolute;
-    left: 70%;
+    left: 65%;
+    padding-top: 20px;
 }
 
 .Header-item  a{
@@ -46,7 +48,7 @@
     font-family: monoscope;
     font-weight: bold;
     padding-bottom: 0px;
-    padding-right: 50px;
+    padding-right: 20px;
     display: block;
 }
 
@@ -56,10 +58,16 @@
 
 .Header {
     background-color: navy;
+    height: 11vh;
 }
 
 .navbar-nav li {
-    padding-right: 30px;
+    padding-right: 20px;
+    list-style-type : none;
+}
+
+.navbar {
+    margin-bottom: 0px;
 }
 
 .Title {
@@ -67,17 +75,16 @@
     font-weight: bold;
     font-size: 30px;
     font-family: monoscope;
-    vertical-align: bottom;
+    vertical-align: middle;
     margin: 20px;
 }
 .carousel .item {
-  top: 11.2vmin;
   height: 700px;
 }
 
 .carousel-image {
-    top: 11.2vmin;
-    height: 700px;
+    margin-top: 11vmin;
+    height:700px;
 }
 
 .item img {
@@ -152,4 +159,80 @@ h1{
     font-size: 18px;
     font-family:monoscope;
     font-weight: bold;
+    width: 200px;
+}
+
+.form {
+    padding: 4%;
+    background-color: darkcyan;
+    color: white;
+    font-family: monoscope;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 30px;
+    width: 50%;
+    margin: 5%;
+    margin-left: 25%;
+    margin-top: 11vh;
+}
+
+.nav-tabs {
+
+    background-color: #0744b3;
+    font-family: monoscope;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.col-form-label {
+    vertical-align: center;
+    font-size: 15px;
+    float: left;
+    height: 40px;
+}
+
+.form-control {
+    height: 40px;
+    font-size: 15px;
+}
+
+.submit-button {
+    height: 40px;
+    font-size: 15px;
+    font-family: monoscope;
+    font-weight: bold;
+    margin-top: 20px;
+    background-color: #0744b3;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.image-background {
+
+  /* The image used */
+  background-image: url("../Components/bg1.jpg");
+
+  /* Full height */
+  height: 89vh;
+  margin-top: 11vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.form-container {
+    height: 89vh;
+    padding-top: 12vh;
+}
+
+.footer {
+    margin-top:2px;
+    background-color: black;
+    color:white;
 }
