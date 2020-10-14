@@ -1,0 +1,59 @@
+
+.group-container {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    max-width: 75%;
+}
+
+.background {
+    height:80vh;
+    padding: 2vh;
+    margin-top: 2vh;
+    background-color: #0744b3;
+    border-radius: 30px;
+}
+
+.create-button {
+    background-color: navy;
+    width:95%;
+    height: 10vh;
+    border-radius: 30px;
+    background-color: darkcyan;
+    margin:10px;
+}
+
+.text-style {
+    font-family: monoscope;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    color:white;
+}
+
+.join-group {
+     max-height: 45vh;
+     margin-top: 10px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.user-group {
+    max-height: 57vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.group-card {
+    background-color: white;
+    color:black;
+}
+
+.black-text {
+    color:black;
+}
+
+.join-button {
+    float: right;
+}

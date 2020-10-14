@@ -2,13 +2,14 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import {Redirect} from "react-router-dom";
 
 
 class SignupComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {username: '', password: '', password2: ''};
+        this.state = {username: '', password: '', password2: '', loggedin:false};
     }
 
     handleChange = (event) => {
@@ -26,12 +27,17 @@ class SignupComponent extends React.Component {
         this.setState ( {
             username: '',
             password: '',
-            password2: ''
+            password2: '',
+            loggedin: true
         })
     };
 
 
     render(){
+      if(this.state.loggedin) {
+        return (<Redirect to="/Groups" />);
+        }
+      else {
       return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px'}}>
@@ -66,6 +72,7 @@ class SignupComponent extends React.Component {
                 </Button>
             </Form>
       );
+      }
     }
 }
 
