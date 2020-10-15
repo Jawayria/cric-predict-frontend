@@ -10,13 +10,32 @@ export default class UserGroupsComponent extends React.Component  {
     super(props);
     this.state = {groups: ['Groups1','Group2','Group3','Group4', 'Group5', 'Group6']};
   }
-/*
+
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/league/get/')
-    const leagues_list = response.data
-    this.setState({leagues: leagues_list})
-}
-*/
+    const user_id = window.localStorage.getItem('user_id');
+    console.log(user_id);
+    const response = await axios.get('http://localhost:8000/api/group/user_groups/'+user_id+"/",{
+    headers: {
+    'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+    }
+})
+    const groups_list = response.data
+    console.log(groups_list)
+
+    groups_list.map((group) => (
+        group.user_count=group.users.length
+    ))
+    groups_list.map((group) => (
+        group.privacy === 'private' ?
+            group.is_private = true :
+            group.is_private = false
+            )
+    )
+    this.setState({groups: groups_list})
+  }
+
+
+
   render() {
   return (
         <div className="card">
@@ -32,14 +51,11 @@ export default class UserGroupsComponent extends React.Component  {
                                   <div className="row">
                                     <div className="col-sm-9">
                                         <div className="row">
-                                            <h5 className="card-title black-text">{group}</h5>
-                                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-lock2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
-                                                    <path fill-rule="evenodd" d="M8 5a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1zm2 2.076V6a2 2 0 1 0-4 0v1.076c-.54.166-1 .597-1 1.224v2.4c0 .816.781 1.3 1.5 1.3h3c.719 0 1.5-.484 1.5-1.3V8.3c0-.627-.46-1.058-1-1.224z"/>
-                                                </svg>
+                                            <h5 className="card-title black-text">{group.name} </h5>
+                                            <p  className="card-text black-text">&nbsp; &nbsp;({group.privacy})</p>
                                         </div>
                                     </div>
-                                    <p className="card-text black-text">5 members</p>
+                                    <p className="card-text black-text">{group.user_count} members</p>
                                   </div>
                                   </div>
                                 </div>

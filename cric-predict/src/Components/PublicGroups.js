@@ -10,13 +10,22 @@ export default class PublicGroupsComponent extends React.Component  {
     super(props);
     this.state = {groups: ['group1', 'group2', 'group3', 'group4', 'group5', 'group6', 'group7', 'group8', 'group9', 'group10']};
   }
-/*
+
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/league/get/')
+    const response = await axios.get('http://localhost:8000/api/group/' ,{
+    headers: {
+    'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+    }
+    });
     const groups_list = response.data
-    this.setState({groups: groups_list})
+    console.log(groups_list)
+
+    groups_list.map((group) => (
+        group.user_count=group.users.length
+    ))
+    this.setState({groups: groups_list});
 }
-*/
+
   render() {
   return (
   <div className="card" >
@@ -25,7 +34,7 @@ export default class PublicGroupsComponent extends React.Component  {
             <ul className="list-group join-group">
             {
                 this.state.groups.map((group) => (
-                <li className="list-group-item"> <b>{group}</b> (5 members) <Button className="join-button">+</Button></li>
+                <li className="list-group-item"> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button">+</Button></li>
                 ))
             }
             </ul>

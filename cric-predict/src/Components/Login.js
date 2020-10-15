@@ -17,11 +17,15 @@ class LoginComponent extends React.Component {
         console.log(event.target.value);
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8000/api/user/login/', {"username": this.state.username, "password": this.state.password})
+        await axios.post('http://localhost:8000/api/user/login/', {"username": this.state.username, "password": this.state.password})
         .then(res => {
+            console.log(res);
+            console.log(res.data);
           window.localStorage.setItem('access_token', res.data['access']);
+          window.localStorage.setItem('refresh_token', res.data['refresh']);
+          window.localStorage.setItem('user_id', res.data['user_id']);
         });
         this.setState ( {
             username: '',
