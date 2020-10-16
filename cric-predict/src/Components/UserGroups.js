@@ -13,7 +13,6 @@ export default class UserGroupsComponent extends React.Component  {
 
   async componentDidMount() {
     const user_id = window.localStorage.getItem('user_id');
-    console.log(user_id);
     const response = await axios.get('http://localhost:8000/api/group/user_groups/'+user_id+"/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
@@ -25,12 +24,6 @@ export default class UserGroupsComponent extends React.Component  {
     groups_list.map((group) => (
         group.user_count=group.users.length
     ))
-    groups_list.map((group) => (
-        group.privacy === 'private' ?
-            group.is_private = true :
-            group.is_private = false
-            )
-    )
     this.setState({groups: groups_list})
   }
 

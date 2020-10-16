@@ -4,6 +4,7 @@ import '../Stylesheets/Group.css';
 import {Button}  from 'react-bootstrap';
 import PublicGroups from './PublicGroups';
 import UserGroups from './UserGroups';
+import CreateGroup from './CreateGroup';
 
 function GroupComponent() {
   return (
@@ -13,8 +14,8 @@ function GroupComponent() {
                 <h1> Groups </h1>
                 <div className="row">
                     <div className="col-sm-4">
-	                     <Button className="create-button text-style"> Create Group</Button>
-                         <PublicGroups />
+                         <CreateGroup />
+	                     <PublicGroups />
                     </div>
                     <div className="col-sm-8">
                           <UserGroups />

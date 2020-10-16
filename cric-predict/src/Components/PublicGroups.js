@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
-import {Button}  from 'react-bootstrap';
+import {Button, Modal}  from 'react-bootstrap';
 
 
 export default class PublicGroupsComponent extends React.Component  {
@@ -12,7 +12,8 @@ export default class PublicGroupsComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/group/' ,{
+    const user_id = window.localStorage.getItem('user_id');
+    const response = await axios.get('http://localhost:8000/api/group/other_groups/'+user_id+"/" ,{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }
@@ -26,6 +27,26 @@ export default class PublicGroupsComponent extends React.Component  {
     this.setState({groups: groups_list});
 }
 
+    joinGroup = async (users,group_id) => {
+        const user_id = window.localStorage.getItem('user_id');
+        users.push(Number(user_id));
+        console.log(users);
+        await axios.patch('http://localhost:8000/api/group/'+group_id+'/', {"users": users},{
+        headers: {
+            'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+        }
+        })
+        .then(res => {
+            alert("Group Joined Successfully");
+        }).catch(error => {
+            alert(error);
+        });
+        this.setState ( {
+            name: '',
+            privacy: '',
+            showHide: !this.state.showHide
+        })
+    };
   render() {
   return (
   <div className="card" >
@@ -34,7 +55,7 @@ export default class PublicGroupsComponent extends React.Component  {
             <ul className="list-group join-group">
             {
                 this.state.groups.map((group) => (
-                <li className="list-group-item"> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button">+</Button></li>
+                <li className="list-group-item"> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button" onClick={() => this.joinGroup(group.users, group.id)}>+</Button></li>
                 ))
             }
             </ul>
