@@ -1,14 +1,17 @@
 import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
-import {Button, Modal}  from 'react-bootstrap';
+import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
 
 
 export default class PublicGroupsComponent extends React.Component  {
 
   constructor(props){
     super(props);
-    this.state = {groups: ['group1', 'group2', 'group3', 'group4', 'group5', 'group6', 'group7', 'group8', 'group9', 'group10']};
+    this.state = {
+    groups: [],
+    filtered_groups:[],
+    };
   }
 
   async componentDidMount() {
@@ -24,7 +27,7 @@ export default class PublicGroupsComponent extends React.Component  {
     groups_list.map((group) => (
         group.user_count=group.users.length
     ))
-    this.setState({groups: groups_list});
+    this.setState({groups: groups_list, filtered_groups:groups_list});
 }
 
     joinGroup = async (users,group_id) => {
@@ -46,15 +49,32 @@ export default class PublicGroupsComponent extends React.Component  {
             privacy: '',
             showHide: !this.state.showHide
         })
+
+            this.setState({groups: this.state.groups.filter(group => group.id!=group_id),
+            filtered_groups: this.state.filtered_groups.filter(group => group.id!=group_id)})
     };
+
+
+    filterGroupList = async (event) => {
+            this.setState({filtered_groups:this.state.groups.filter(group => group.name.toLowerCase().includes(event.target.value.toLowerCase()))});
+        }
+
   render() {
   return (
   <div className="card" >
       <div className="card-body">
          <h3 className="text-style"> Join Group</h3>
+             <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px'}}>
+                  <Form.Label column sm="4">
+                       Members
+                  </Form.Label>
+                  <Col sm="8">
+                        <Form.Control type="text" onChange={this.filterGroupList} name="filter" placeholder="Filter Groups" />
+                  </Col>
+             </Form.Group>
             <ul className="list-group join-group">
             {
-                this.state.groups.map((group) => (
+                this.state.filtered_groups.map((group) => (
                 <li className="list-group-item"> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button" onClick={() => this.joinGroup(group.users, group.id)}>+</Button></li>
                 ))
             }

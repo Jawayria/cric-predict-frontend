@@ -5,8 +5,13 @@ import {Button}  from 'react-bootstrap';
 import PublicGroups from './PublicGroups';
 import UserGroups from './UserGroups';
 import CreateGroup from './CreateGroup';
+import {Redirect} from "react-router-dom";
 
 function GroupComponent() {
+      if(!window.localStorage.getItem('access_token')) {
+        return (<Redirect to="/login" />);
+        }
+      else {
   return (
     <div className='image-background'>
        <div className="container group-container" >
@@ -25,6 +30,7 @@ function GroupComponent() {
         </div>
     </div>
   );
+  }
 }
 
 export default GroupComponent;

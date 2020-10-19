@@ -1,14 +1,17 @@
 import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
-import {Button}  from 'react-bootstrap';
 import private_icon from './private.jpg';
+import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
 
 export default class UserGroupsComponent extends React.Component  {
 
   constructor(props){
     super(props);
-    this.state = {groups: ['Groups1','Group2','Group3','Group4', 'Group5', 'Group6']};
+    this.state = {
+    groups: [],
+    filtered_groups: [],
+    };
   }
 
   async componentDidMount() {
@@ -24,9 +27,12 @@ export default class UserGroupsComponent extends React.Component  {
     groups_list.map((group) => (
         group.user_count=group.users.length
     ))
-    this.setState({groups: groups_list})
+    this.setState({groups: groups_list, filtered_groups:groups_list})
   }
 
+    filterGroupList = async (event) => {
+            this.setState({filtered_groups:this.state.groups.filter(group => group.name.toLowerCase().includes(event.target.value.toLowerCase()))});
+        }
 
 
   render() {
@@ -34,9 +40,17 @@ export default class UserGroupsComponent extends React.Component  {
         <div className="card">
             <div className="card-body">
                 <h3 className="text-style"> Your Groups</h3>
+                    <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px', color:'white'}}>
+                         <Form.Label column sm="2">
+                            Search
+                         </Form.Label>
+                         <Col sm="8">
+                             <Form.Control type="text" onChange={this.filterGroupList} name="search" placeholder="Search Groups" />
+                         </Col>
+                    </Form.Group>
                     <div className="row user-group">
                          {
-                              this.state.groups.map((group) => (
+                              this.state.filtered_groups.map((group) => (
                               <div className="col-sm-12">
                                 <a href="#">
                                 <div className="card group-card">
