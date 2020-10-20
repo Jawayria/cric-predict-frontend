@@ -64,12 +64,12 @@ export default class PublicGroupsComponent extends React.Component  {
   <div className="card" >
       <div className="card-body">
          <h3 className="text-style"> Join Group</h3>
-             <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px'}}>
+             <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px',color: 'white'}}>
                   <Form.Label column sm="4">
-                       Members
+                       Search Groups
                   </Form.Label>
-                  <Col sm="8">
-                        <Form.Control type="text" onChange={this.filterGroupList} name="filter" placeholder="Filter Groups" />
+                  <Col sm="7">
+                        <Form.Control type="text" onChange={this.filterGroupList} name="filter" placeholder="Search" />
                   </Col>
              </Form.Group>
             <ul className="list-group join-group">
