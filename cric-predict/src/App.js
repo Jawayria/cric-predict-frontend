@@ -4,10 +4,11 @@ import Home from './Components/Home.js';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Header from "./Components/Header";
 import Rules from "./Components/Rules";
-import Leagues from "./Components/Leagues";
+import UpcomingLeagues from "./Components/UpcomingLeagues";
 import Authentication from "./Components/Authentication";
 import Footer from "./Components/Footer";
 import Groups from "./Components/Groups";
+import GroupDashboard from "./Components/GroupDashboard";
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/rules" component={Rules}/>
-          <Route exact path="/leagues" component={Leagues}/>
+          <Route exact path="/leagues" component={UpcomingLeagues}/>
           <Route exact path="/login" component={Authentication}/>
           <Route exact path="/groups" component={Groups} />
+          <Route exact path="/group_dashboard" component={GroupDashboard} />
         </Switch>
         <Footer/>
       </BrowserRouter>
