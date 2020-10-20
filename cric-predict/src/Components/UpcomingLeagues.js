@@ -2,7 +2,7 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 
-export default class LeagueComponent extends React.Component  {
+export default class UpcomingLeaguesComponent extends React.Component  {
 
   constructor(props){
     super(props);

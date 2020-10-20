@@ -7,6 +7,7 @@ import UserGroups from './UserGroups';
 import CreateGroup from './CreateGroup';
 import {Redirect} from "react-router-dom";
 
+
 function GroupComponent() {
       if(!window.localStorage.getItem('access_token')) {
         return (<Redirect to="/login" />);

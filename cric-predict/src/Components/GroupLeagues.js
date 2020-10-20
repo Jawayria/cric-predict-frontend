@@ -9,29 +9,13 @@ export default class UserGroupsComponent extends React.Component  {
   constructor(props){
     super(props);
     this.state = {
-    groups: [],
-    filtered_groups: [],
+    leagues: ['league 1', 'league 2', 'league 3', 'league 4'],
+    filtered_leagues: ['league 1', 'league 2', 'league 3', 'league 4'],
     };
   }
 
-  async componentDidMount() {
-    const user_id = window.localStorage.getItem('user_id');
-    const response = await axios.get('http://localhost:8000/api/group/user_groups/'+user_id+"/",{
-    headers: {
-    'Authorization': "Bearer "+window.localStorage.getItem('access_token')
-    }
-})
-    const groups_list = response.data
-    console.log(groups_list)
-
-    groups_list.map((group) => (
-        group.user_count=group.users.length
-    ))
-    this.setState({groups: groups_list, filtered_groups:groups_list})
-  }
-
-    filterGroupList = async (event) => {
-            this.setState({filtered_groups:this.state.groups.filter(group => group.name.toLowerCase().includes(event.target.value.toLowerCase()))});
+    filterLeagueList = async (event) => {
+            this.setState({filtered_leagues:this.state.leagues.filter(league => league.toLowerCase().includes(event.target.value.toLowerCase()))});
         }
 
 
@@ -45,12 +29,12 @@ export default class UserGroupsComponent extends React.Component  {
                             Search
                          </Form.Label>
                          <Col sm="8">
-                             <Form.Control type="text" onChange={this.filterGroupList} name="search" placeholder="Search Groups" />
+                             <Form.Control type="text" onChange={this.filterLeagueList} name="search" placeholder="Search Groups" />
                          </Col>
                     </Form.Group>
                     <div className="row user-group">
                          {
-                              this.state.filtered_groups.map((group) => (
+                              this.state.filtered_leagues.map((league) => (
                               <div className="col-sm-12">
                                 <a href="/group_dashboard">
                                 <div className="card group-card">
@@ -58,11 +42,10 @@ export default class UserGroupsComponent extends React.Component  {
                                   <div className="row">
                                     <div className="col-sm-9">
                                         <div className="row">
-                                            <h5 className="card-title black-text">{group.name} </h5>
-                                            <p  className="card-text black-text">&nbsp; &nbsp;({group.privacy})</p>
+                                            <h5 className="card-title black-text">{league} </h5>
                                         </div>
                                     </div>
-                                    <p className="card-text black-text">{group.user_count} members</p>
+                                    <p className="card-text black-text">2/10/2020 to 5/11/2020</p>
                                   </div>
                                   </div>
                                 </div>
