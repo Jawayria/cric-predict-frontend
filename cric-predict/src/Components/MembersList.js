@@ -8,16 +8,30 @@ export default class MemberListComponent extends React.Component  {
 
   constructor(props){
     super(props);
+    console.log(props);
     this.state = {
-    members: [],
+    group_member_ids: [...this.props.group_members],
     filtered_members:[],
-    group_id: this.props.group_id
+    group_members: [],
     };
   }
 
   filterMemberList = async (event) => {
       this.setState({filtered_members:this.state.members.filter(member => member.toLowerCase().includes(event.target.value.toLowerCase()))});
   }
+
+  async componentDidMount() {
+    const response = await axios.get('http://localhost:8000/api/user/list/' ,{
+    headers: {
+    'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+    }
+    });
+    const users_list = response.data
+    console.log(users_list)
+
+    users_list.filter((user) => this.state.group_member_ids.includes(user.id));
+    this.setState({group_members: [...users_list], filtered_members:[...users_list]});
+}
 
   render() {
   return (
@@ -35,7 +49,7 @@ export default class MemberListComponent extends React.Component  {
             <ul className="list-group join-group">
             {
                 this.state.filtered_members.map((member) => (
-                <li className="list-group-item"> {member} </li>
+                <li className="list-group-item"> {member.username} </li>
                 ))
             }
             </ul>
