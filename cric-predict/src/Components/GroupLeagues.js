@@ -9,21 +9,34 @@ export default class UserGroupsComponent extends React.Component  {
   constructor(props){
     super(props);
     this.state = {
-    leagues: ['league 1', 'league 2', 'league 3', 'league 4'],
-    filtered_leagues: ['league 1', 'league 2', 'league 3', 'league 4'],
+    leagues: [],
+    filtered_leagues: [],
+    group_id: this.props.group_id,
     };
   }
 
-    filterLeagueList = async (event) => {
-            this.setState({filtered_leagues:this.state.leagues.filter(league => league.toLowerCase().includes(event.target.value.toLowerCase()))});
+  filterLeagueList = async (event) => {
+      this.setState({filtered_leagues:this.state.leagues.filter(league => league.toLowerCase().includes(event.target.value.toLowerCase()))});
+  }
+
+  async componentDidMount() {
+    const response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
+        headers: {
+        'Authorization': "Bearer "+window.localStorage.getItem('access_token')
         }
+    })
+    const leagues_list = response.data
+    console.log(leagues_list)
+
+    this.setState({leagues: leagues_list, filtered_leagues:leagues_list})
+  }
 
 
   render() {
   return (
         <div className="card">
             <div className="card-body">
-                <h3 className="text-style"> Your Groups</h3>
+                <h3 className="text-style"> Leagues</h3>
                     <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px', color:'white'}}>
                          <Form.Label column sm="2">
                             Search
@@ -45,7 +58,7 @@ export default class UserGroupsComponent extends React.Component  {
                                             <h5 className="card-title black-text">{league} </h5>
                                         </div>
                                     </div>
-                                    <p className="card-text black-text">2/10/2020 to 5/11/2020</p>
+                                    <p className="card-text black-text">{league.start_date} to {league.end_date}</p>
                                   </div>
                                   </div>
                                 </div>

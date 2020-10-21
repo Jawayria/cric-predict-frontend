@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import axios from 'axios';
 import private_icon from './private.jpg';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default class UserGroupsComponent extends React.Component  {
 
@@ -52,7 +53,7 @@ export default class UserGroupsComponent extends React.Component  {
                          {
                               this.state.filtered_groups.map((group) => (
                               <div className="col-sm-12">
-                                <a href="/group_dashboard">
+                                <Link to={{ pathname: '/group_dashboard', state: { group_obj: group}}}>
                                 <div className="card group-card">
                                   <div className="card-body">
                                   <div className="row">
@@ -66,7 +67,7 @@ export default class UserGroupsComponent extends React.Component  {
                                   </div>
                                   </div>
                                 </div>
-                                </a>
+                                </Link>
                               </div>))
                          }
                     </div>
