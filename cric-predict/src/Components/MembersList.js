@@ -9,20 +9,21 @@ export default class MemberListComponent extends React.Component  {
   constructor(props){
     super(props);
     this.state = {
-    members: ['member 1', 'member 2', 'member 3', 'member 4'],
-    filtered_members:['member 1', 'member 2', 'member 3', 'member 4'],
+    members: [],
+    filtered_members:[],
+    group_id: this.props.group_id
     };
   }
 
-    filterMemberList = async (event) => {
-            this.setState({filtered_members:this.state.members.filter(member => member.toLowerCase().includes(event.target.value.toLowerCase()))});
-        }
+  filterMemberList = async (event) => {
+      this.setState({filtered_members:this.state.members.filter(member => member.toLowerCase().includes(event.target.value.toLowerCase()))});
+  }
 
   render() {
   return (
   <div className="card" >
       <div className="card-body">
-         <h3 className="text-style"> Join Group</h3>
+         <h3 className="text-style"> Group Members</h3>
              <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px',color: 'white'}}>
                   <Form.Label column sm="4">
                        Search Member

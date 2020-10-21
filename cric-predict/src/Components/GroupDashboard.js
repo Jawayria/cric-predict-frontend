@@ -7,15 +7,17 @@ import LeaveGroup from "./LeaveGroup";
 import MembersList from "./MembersList";
 import GroupLeagues from "./GroupLeagues";
 
-export default class UpcomingLeaguesComponent extends React.Component
+export default class GroupDashboardComponent extends React.Component
 {
         constructor(props)
         {
             super(props);
+            console.log(props);
             this.state = {
-                group_name : "Group_name"
+                group : this.props.location.state.group_obj
             }
         }
+
         render (){
           if(!window.localStorage.getItem('access_token')) {
             return (<Redirect to="/login" />);
@@ -25,14 +27,14 @@ export default class UpcomingLeaguesComponent extends React.Component
                 <div className='image-background'>
                    <div className="container group-container" >
                         <div className="background">
-                            <h1> {this.state.group_name} </h1>
+                            <h1> {this.state.group.name} </h1>
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <LeaveGroup />
-                                    <MembersList />
+                                    <LeaveGroup group_id={this.state.group.id}/>
+                                    <MembersList group_id={this.state.group.id}/>
                                 </div>
                                 <div className="col-sm-8">
-                                    <GroupLeagues />
+                                    <GroupLeagues group_id={this.state.group.id}/>
                                 </div>
                             </div>
                         </div>
