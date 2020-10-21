@@ -11,10 +11,10 @@ export default class CreateGroupsComponent extends React.Component  {
             this.state = {
                 name: '',
                 privacy: 'public',
-                all_users:[],
+                unfiltered_users:[],
                 selected_users: [],
                 filtered_users:[],
-                users_copy: [],
+                all_users: [],
                 showHide : false
             }
         }
@@ -26,17 +26,17 @@ export default class CreateGroupsComponent extends React.Component  {
             }
             })
             const users_list = response.data
-            this.setState({all_users: users_list, filtered_users:users_list, users_copy: users_list})
-            console.log(this.state.all_users)
+            this.setState({unfiltered_users: users_list, filtered_users:users_list, all_users: users_list})
+            console.log(this.state.unfiltered_users)
         }
 
         handleModalShowHide() {
             this.setState({
                 name: '',
                 privacy: 'public',
-                all_users: this.state.users_copy,
+                unfiltered_users: [...this.state.all_users],
                 selected_users: [],
-                filtered_users: this.state.users_copy,
+                filtered_users: [...this.state.all_users],
                 showHide: !this.state.showHide })
         }
 
@@ -49,11 +49,11 @@ export default class CreateGroupsComponent extends React.Component  {
             await axios.post('http://localhost:8000/api/group/', {"name": this.state.name, "privacy": this.state.privacy,
                         "users": this.state.selected_users},{
                         headers: {
-                            'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+                            'Authorization': "Bearer "+localStorage.getItem('access_token')
                         }
             })
             .then( async (res) => {
-                const user_id = window.localStorage.getItem('user_id');
+                const user_id = localStorage.getItem('user_id');
                 this.state.selected_users.push(user_id);
                 await axios.patch('http://localhost:8000/api/group/'+res.data.id+'/', {"users": this.state.selected_users },{
                 headers: {
@@ -70,19 +70,20 @@ export default class CreateGroupsComponent extends React.Component  {
         this.setState ( {
             name: '',
             privacy: '',
+            selected_users:[],
             showHide: !this.state.showHide
         })
 
         };
 
         filterUserList = async (event) => {
-            this.setState({filtered_users:this.state.all_users.filter(user => user.username.toLowerCase().includes(event.target.value.toLowerCase()))});
+            this.setState({filtered_users:this.state.unfiltered_users.filter(user => user.username.toLowerCase().includes(event.target.value.toLowerCase()))});
         }
 
 
         addMember = user_id => {
             this.state.selected_users.push(user_id)
-            this.setState({all_users: this.state.all_users.filter(user => !this.state.selected_users.includes(user.id)),
+            this.setState({unfiltered_users: this.state.unfiltered_users.filter(user => !this.state.selected_users.includes(user.id)),
             filtered_users: this.state.filtered_users.filter(user => !this.state.selected_users.includes(user.id))})
         }
 
