@@ -17,7 +17,7 @@ export default class MemberListComponent extends React.Component  {
   }
 
   filterMemberList = async (event) => {
-      this.setState({filtered_members:this.state.members.filter(member => member.toLowerCase().includes(event.target.value.toLowerCase()))});
+      this.setState({filtered_members:this.state.group_members.filter(member => member.username.toLowerCase().includes(event.target.value.toLowerCase()))});
   }
 
   async componentDidMount() {
@@ -27,9 +27,19 @@ export default class MemberListComponent extends React.Component  {
     }
     });
     const users_list = response.data
+    console.log(this.state.group_member_ids.includes(40))
+    console.log("Here")
+    console.log(this.state.group_member_ids)
+    users_list.map((user => {
+        if (this.state.group_member_ids.includes(user.id)){
+            user.is_member=true
+        }
+        else{
+            user.is_member=false
+        }
+    }))
     console.log(users_list)
-
-    users_list.filter((user) => this.state.group_member_ids.includes(user.id));
+    users_list.map(user=>console.log(user.id));
     this.setState({group_members: [...users_list], filtered_members:[...users_list]});
 }
 
@@ -48,7 +58,7 @@ export default class MemberListComponent extends React.Component  {
              </Form.Group>
             <ul className="list-group join-group">
             {
-                this.state.filtered_members.map((member) => (
+                this.state.filtered_members.filter(user => user.is_member === true).map((member) => (
                 <li className="list-group-item"> {member.username} </li>
                 ))
             }

@@ -6,6 +6,7 @@ import {Redirect} from "react-router-dom";
 import LeaveGroup from "./LeaveGroup";
 import MembersList from "./MembersList";
 import GroupLeagues from "./GroupLeagues";
+import jwt from "jsonwebtoken";
 
 export default class GroupDashboardComponent extends React.Component
 {
@@ -19,10 +20,16 @@ export default class GroupDashboardComponent extends React.Component
         }
 
         render (){
-          if(!window.localStorage.getItem('access_token')) {
-            return (<Redirect to="/login" />);
+            if(localStorage.getItem('access_token'))
+            {
+                const token = localStorage.getItem('access_token');
+                var decodedToken=jwt.decode(token, {complete: true});
+                var dateNow = new Date();
+
+                if(decodedToken.payload.exp < dateNow.getTime()/1000){
+                    return (<Redirect to="/login" />);
+                }
             }
-          else {
             return (
                 <div className='image-background'>
                    <div className="container group-container" >
@@ -42,7 +49,7 @@ export default class GroupDashboardComponent extends React.Component
                 </div>
             );
           }
-        }
+
 }
 
 

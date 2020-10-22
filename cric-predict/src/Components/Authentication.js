@@ -7,33 +7,35 @@ import {Redirect} from 'react-router-dom';
 import jwt from 'jsonwebtoken'
 
 function AuthenticationComponent() {
+    if(localStorage.getItem('access_token'))
+    {
         var isExpired = false;
         const token = localStorage.getItem('access_token');
         var decodedToken=jwt.decode(token, {complete: true});
         var dateNow = new Date();
 
-        if(!(decodedToken.exp < dateNow.getTime())){
+        if(!(decodedToken.payload.exp < dateNow.getTime()/1000)){
                 return (<Redirect to="/groups" />);
             }
-            else {
-            return (
+    }
+        return (
             <div className='image-background'>
-               <div className="container form-container" >
-                <div className="form">
-                <h1> Lets Get Started! </h1>
-                <Tabs  id="controlled-tab-example">
-                  <Tab eventKey="login" title="Login">
-                    <Login />
-                  </Tab>
-                  <Tab eventKey="sign up" title="Sign up">
-                     <Signup />
-                   </Tab>
-                </Tabs>
+                <div className="container form-container" >
+                    <div className="form">
+                        <h1> Lets Get Started! </h1>
+                        <Tabs  id="controlled-tab-example">
+                            <Tab eventKey="login" title="Login">
+                                <Login />
+                            </Tab>
+                            <Tab eventKey="sign up" title="Sign up">
+                                <Signup />
+                            </Tab>
+                        </Tabs>
+                    </div>
                 </div>
             </div>
-            </div>
           );
-      }
+
 }
 
 export default AuthenticationComponent;
