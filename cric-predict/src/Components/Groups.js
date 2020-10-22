@@ -5,6 +5,7 @@ import PublicGroups from './PublicGroups';
 import UserGroups from './UserGroups';
 import CreateGroup from './CreateGroup';
 import {Redirect} from "react-router-dom";
+<<<<<<< HEAD
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
@@ -76,6 +77,13 @@ export default class GroupComponent extends React.Component  {
 
   render() {
             if(localStorage.getItem('access_token'))
+=======
+import jwt from 'jsonwebtoken'
+
+
+function GroupComponent() {
+           if(localStorage.getItem('access_token'))
+>>>>>>> Added token expiry check, connected group members list component and leagues list component to api
            {
                 const token = localStorage.getItem('access_token');
                 var decodedToken=jwt.decode(token, {complete: true});

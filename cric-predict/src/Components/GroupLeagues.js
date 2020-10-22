@@ -16,7 +16,7 @@ export default class UserGroupsComponent extends React.Component  {
   }
 
   filterLeagueList = async (event) => {
-      this.setState({filtered_leagues:this.state.leagues.filter(league => league.toLowerCase().includes(event.target.value.toLowerCase()))});
+      this.setState({filtered_leagues:this.state.leagues.filter(league => league.name.toLowerCase().includes(event.target.value.toLowerCase()))});
   }
 
   async componentDidMount() {
@@ -42,7 +42,7 @@ export default class UserGroupsComponent extends React.Component  {
                             Search
                          </Form.Label>
                          <Col sm="8">
-                             <Form.Control type="text" onChange={this.filterLeagueList} name="search" placeholder="Search Groups" />
+                             <Form.Control type="text" onChange={this.filterLeagueList} name="search" placeholder="Search Leagues" />
                          </Col>
                     </Form.Group>
                     <div className="row user-group">
@@ -55,7 +55,7 @@ export default class UserGroupsComponent extends React.Component  {
                                   <div className="row">
                                     <div className="col-sm-9">
                                         <div className="row">
-                                            <h5 className="card-title black-text">{league} </h5>
+                                            <h5 className="card-title black-text">{league.name} </h5>
                                         </div>
                                     </div>
                                     <p className="card-text black-text">{league.start_date} to {league.end_date}</p>

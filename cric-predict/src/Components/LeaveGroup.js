@@ -12,10 +12,13 @@ export default class LeaveGroupsComponent extends React.Component  {
             }
         }
 
+        leaveGroup = async(event) => {
+
+        }
       render() {
           return (
                 <div>
-                        <Button className="create-button text-style">
+                        <Button className="create-button text-style" onClick={this.leaveGroup()}>
                             Leave Group
                         </Button>
                 </div>
