@@ -49,7 +49,7 @@ export default class UserGroupsComponent extends React.Component  {
                          {
                               this.state.filtered_leagues.map((league) => (
                               <div className="col-sm-12">
-                                <a href="/group_dashboard">
+                                <a href="#">
                                 <div className="card group-card">
                                   <div className="card-body">
                                   <div className="row">

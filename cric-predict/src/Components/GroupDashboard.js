@@ -37,7 +37,7 @@ export default class GroupDashboardComponent extends React.Component
                             <h1> {this.state.group.name} </h1>
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <LeaveGroup group_id={this.state.group.id}/>
+                                    <LeaveGroup group_id={this.state.group.id} group_members={this.state.group.users}/>
                                     <MembersList group_members={this.state.group.users}/>
                                 </div>
                                 <div className="col-sm-8">
