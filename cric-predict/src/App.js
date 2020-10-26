@@ -9,6 +9,7 @@ import Authentication from "./Components/Authentication";
 import Footer from "./Components/Footer";
 import Groups from "./Components/Groups";
 import GroupDashboard from "./Components/GroupDashboard";
+import LeagueDashboard from "./Components/LeagueDashboard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/login" component={Authentication}/>
           <Route exact path="/groups" component={Groups} />
           <Route exact path="/group_dashboard" component={GroupDashboard} />
+          <Route exact path="/league_dashboard" component={LeagueDashboard} />
         </Switch>
         <Footer/>
       </BrowserRouter>
