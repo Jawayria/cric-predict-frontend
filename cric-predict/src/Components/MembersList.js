@@ -8,6 +8,7 @@ export default class MemberListComponent extends React.Component  {
 
   constructor(props){
     super(props);
+    console.log("ooo");
     console.log(props);
     this.state = {
     group_member_ids: [...this.props.group_members],
@@ -23,13 +24,10 @@ export default class MemberListComponent extends React.Component  {
   async componentDidMount() {
     const response = await axios.get('http://localhost:8000/api/user/list/' ,{
     headers: {
-    'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+    'Authorization': "Bearer "+localStorage.getItem('access_token')
     }
     });
     const users_list = response.data
-    console.log(this.state.group_member_ids.includes(40))
-    console.log("Here")
-    console.log(this.state.group_member_ids)
     users_list.map((user => {
         if (this.state.group_member_ids.includes(user.id)){
             user.is_member=true
