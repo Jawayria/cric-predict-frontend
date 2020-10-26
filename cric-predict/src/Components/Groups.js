@@ -91,7 +91,6 @@ export default class GroupComponent extends React.Component  {
                         <div className="row">
                             <div className="col-sm-4">
                                  <CreateGroup />
-<<<<<<< HEAD
                                  <div className="card" >
                                   <div className="card-body">
                                      <h3 className="text-style"> Join Group</h3>
@@ -149,12 +148,6 @@ export default class GroupComponent extends React.Component  {
                                             </div>
                                     </div>
                                 </div>
-=======
-                                 <PublicGroups />
-                            </div>
-                            <div className="col-sm-8">
-                                  <UserGroups />
->>>>>>> 4ec87a3b71b797a5881b8bc1e230fb79b80f00d0
                             </div>
                         </div>
                     </div>
@@ -162,8 +155,5 @@ export default class GroupComponent extends React.Component  {
             </div>
           );
 
-<<<<<<< HEAD
   }
-=======
->>>>>>> 4ec87a3b71b797a5881b8bc1e230fb79b80f00d0
 }
