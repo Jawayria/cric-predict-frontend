@@ -2,13 +2,14 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import {Redirect} from "react-router-dom";
 
 
 class LoginComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {username: '', password: ''};
+        this.state = {username: '', password: '', loggedin: false};
     }
 
     handleChange = (event) => {
@@ -16,20 +17,29 @@ class LoginComponent extends React.Component {
         console.log(event.target.value);
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
-        axios.post('http://localhost:8000/api/user/login/', {"username": this.state.username, "password": this.state.password})
+        await axios.post('http://localhost:8000/api/user/login/', {"username": this.state.username, "password": this.state.password})
         .then(res => {
+            console.log(res);
+            console.log(res.data);
           window.localStorage.setItem('access_token', res.data['access']);
+          window.localStorage.setItem('refresh_token', res.data['refresh']);
+          window.localStorage.setItem('user_id', res.data['user_id']);
         });
         this.setState ( {
             username: '',
-            password: ''
+            password: '',
+            loggedin: true
         })
     };
 
 
     render(){
+      if(this.state.loggedin) {
+        return (<Redirect to="/Groups" />);
+        }
+      else {
       return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group as={Row} controlId="formPlaintext" style={{marginTop: 20+'px'}}>
@@ -56,6 +66,7 @@ class LoginComponent extends React.Component {
             </Form>
 
       );
+      }
     }
 }
 

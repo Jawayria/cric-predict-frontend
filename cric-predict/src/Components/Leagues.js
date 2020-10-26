@@ -22,12 +22,12 @@ export default class LeagueComponent extends React.Component  {
   <div className="row">
      {
           this.state.leagues.map((league) => (
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{league.name}</h5>
-                <p class="card-text"><b>Start Date: </b>{league.start_date}</p>
-                <p class="card-text"><b>End Date: </b>{league.end_date}</p>
+          <div className="col-sm-6">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{league.name}</h5>
+                <p className="card-text"><b>Start Date: </b>{league.start_date}</p>
+                <p className="card-text"><b>End Date: </b>{league.end_date}</p>
               </div>
             </div>
           </div>))

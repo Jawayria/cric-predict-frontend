@@ -7,6 +7,7 @@ import Rules from "./Components/Rules";
 import Leagues from "./Components/Leagues";
 import Authentication from "./Components/Authentication";
 import Footer from "./Components/Footer";
+import Groups from "./Components/Groups";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route exact path="/rules" component={Rules}/>
           <Route exact path="/leagues" component={Leagues}/>
           <Route exact path="/login" component={Authentication}/>
-
+          <Route exact path="/groups" component={Groups} />
         </Switch>
         <Footer/>
       </BrowserRouter>
