@@ -9,13 +9,14 @@ import TodaysMatches from "./TodaysMatches";
 import LeagueMatches from "./LeagueMatches";
 import jwt from "jsonwebtoken";
 
-export default class GroupDashboardComponent extends React.Component
+export default class LeagueDashboardComponent extends React.Component
 {
         constructor(props)
         {
             super(props);
             this.state = {
-                league : props.location.league_obj.league
+                league : props.location.league_obj.league,
+                group_id: props.location.group_id,
             }
         }
 
@@ -41,7 +42,7 @@ export default class GroupDashboardComponent extends React.Component
                                         <LeaderBoard />
                                         <Predictions />
                                     </div>
-                                    <TodaysMatches league_id={this.state.league.id}/>
+                                    <TodaysMatches league_id={this.state.league.id} group_id={this.state.group_id}/>
                                 </div>
                                 <div className="col-sm-8">
                                     <LeagueMatches league_id={this.state.league.id}/>

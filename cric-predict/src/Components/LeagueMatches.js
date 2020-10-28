@@ -18,11 +18,14 @@ export default class UserGroupsComponent extends React.Component  {
     console.log(this.state.league_id);
     const response = await axios.get('http://localhost:8000/api/contest/league_matches/'+this.state.league_id+"/",{
         headers: {
-        'Authorization': "Bearer "+window.localStorage.getItem('access_token')
+        'Authorization': "Bearer "+ localStorage.getItem('access_token')
         }
     })
     const matches_list = response.data
-    console.log(matches_list)
+    matches_list.map(match => {
+    match.date = new Date(match.time).toLocaleDateString()
+    match.time = new Date(match.time).toLocaleTimeString()
+    })
 
     this.setState({matches: matches_list})
   }
@@ -42,11 +45,11 @@ export default class UserGroupsComponent extends React.Component  {
                                   <div className="card-body">
                                   <div className="row">
                                     <div className="col-sm-9">
-                                        <div className="row">
-                                            <h5 className="card-title black-text">{match}</h5>
-                                        </div>
+                                        <h5 className="card-title black-text">{match.team1} vs {match.team2}</h5>
                                     </div>
+                                    <p><b>Winner: </b>{match.winner}</p>
                                   </div>
+                                    <p>{match.date} {match.time}</p>
                                   </div>
                                 </div>
                                 </a>

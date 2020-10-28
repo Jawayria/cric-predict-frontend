@@ -34,6 +34,7 @@ export default class UserGroupsComponent extends React.Component  {
 
 
   render() {
+  const group_id_copy = this.state.group_id;
   return (
         <div className="card">
             <div className="card-body">
@@ -50,7 +51,7 @@ export default class UserGroupsComponent extends React.Component  {
                          {
                               this.state.filtered_leagues.map((league) => (
                               <div className="col-sm-12">
-                              <Link to={{pathname:"./league_dashboard", league_obj: {league}}}>
+                              <Link to={{pathname:"./league_dashboard", league_obj: {league}, group_id:group_id_copy }}>
                                 <div className="card group-card">
                                   <div className="card-body">
                                   <div className="row">
