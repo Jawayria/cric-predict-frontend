@@ -15,7 +15,7 @@ export default class PredictionsComponent extends React.Component  {
       render() {
           return (
                         <Button className="create-button text-style col-sm-5" onClick={() => this.handleModalShowHide()}>
-                            Your Predictions
+                            Predictions Record
                         </Button>
              );
      }
