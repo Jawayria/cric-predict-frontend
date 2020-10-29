@@ -31,7 +31,8 @@
 }
 
 .join-group {
-     max-height: 45vh;
+     max-height: 38vh;
+     min-height: 38vh;
      margin-top: 10px;
     margin-bottom: 10px;
     overflow:scroll;

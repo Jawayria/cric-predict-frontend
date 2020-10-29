@@ -1,10 +1,8 @@
 import React from 'react';
 import '../Stylesheets/App.css';
 import '../Stylesheets/Group.css';
-import PublicGroups from './PublicGroups';
-import UserGroups from './UserGroups';
 import CreateGroup from './CreateGroup';
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
@@ -130,7 +128,7 @@ export default class GroupComponent extends React.Component  {
                                                  {
                                                       this.state.filtered_joined_groups.map((group) => (
                                                       <div className="col-sm-12">
-                                                        <a href="#">
+                                                        <Link to={{pathname:"./group_dashboard", group_obj: {group}}}>
                                                         <div className="card group-card">
                                                           <div className="card-body">
                                                           <div className="row">
@@ -144,7 +142,7 @@ export default class GroupComponent extends React.Component  {
                                                           </div>
                                                           </div>
                                                         </div>
-                                                        </a>
+                                                        </Link>
                                                       </div>))
                                                  }
                                             </div>
