@@ -15,19 +15,19 @@ export default class UserGroupsComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    console.log(this.state.league_id);
-    const response = await axios.get('http://localhost:8000/api/contest/league_matches/'+this.state.league_id+"/",{
-        headers: {
-        'Authorization': "Bearer "+ localStorage.getItem('access_token')
-        }
-    })
-    const matches_list = response.data
-    matches_list.map(match => {
-    match.date = new Date(match.time).toLocaleDateString()
-    match.time = new Date(match.time).toLocaleTimeString()
-    })
+    const ws = new WebSocket("ws://localhost:8000/matches-data/")
+    ws.onopen = () => {
+        ws.send(this.state.league_id.toString())
+    }
+    ws.onmessage = e => {
+        const matches_list = JSON.parse(e.data)
+        matches_list.map(match => {
+            match.date = new Date(match.time).toLocaleDateString()
+            match.time = new Date(match.time).toLocaleTimeString()
+        })
 
-    this.setState({matches: matches_list})
+        this.setState({matches: matches_list})
+    }
   }
 
 

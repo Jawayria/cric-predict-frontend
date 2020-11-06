@@ -21,13 +21,17 @@ export default class GroupComponent extends React.Component  {
   }
 
   async componentDidMount() {
+    console.log("IN")
     const user_id = window.localStorage.getItem('user_id');
-    const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/groups_dict/",{
+    console.log(user_id)
+    const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }
     })
+    console.log(response.data)
     const groups_list = response.data
+    console.log("groups")
     console.log(groups_list)
 
     groups_list['public_groups'].map((group) => (

@@ -26,12 +26,16 @@ class LoginComponent extends React.Component {
           window.localStorage.setItem('access_token', res.data['access']);
           window.localStorage.setItem('refresh_token', res.data['refresh']);
           window.localStorage.setItem('user_id', res.data['user_id']);
-        });
+
         this.setState ( {
             username: '',
             password: '',
             loggedin: true
         })
+        }).catch( e => {
+            alert("Username or Password is Incorrect");
+        }
+        );
     };
 
 
