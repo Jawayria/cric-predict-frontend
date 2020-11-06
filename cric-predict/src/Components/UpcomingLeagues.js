@@ -9,10 +9,13 @@ export default class UpcomingLeaguesComponent extends React.Component  {
     this.state = {leagues: []};
   }
 
-  async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/league/get/')
-    const leagues_list = response.data
-    this.setState({leagues: leagues_list})
+  async componentDidMount() {const ws = new WebSocket("ws://localhost:8000/leagues-data/")
+    ws.onopen = () => {
+        ws.send("hi")
+    }
+    ws.onmessage = e => {
+        this.setState({leagues: JSON.parse(e.data)})
+    }
 }
 
   render() {
