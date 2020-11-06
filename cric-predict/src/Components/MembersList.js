@@ -8,8 +8,6 @@ export default class MemberListComponent extends React.Component  {
 
   constructor(props){
     super(props);
-    console.log("ooo");
-    console.log(props);
     this.state = {
     group_member_ids: [...this.props.group_members],
     filtered_members:[],
