@@ -9,7 +9,8 @@ export default class UpcomingLeaguesComponent extends React.Component  {
     this.state = {leagues: []};
   }
 
-  async componentDidMount() {const ws = new WebSocket("ws://localhost:8000/leagues-data/")
+  async componentDidMount() {
+  const ws = new WebSocket("ws://localhost:8000/leagues-data/")
     ws.onopen = () => {
         ws.send("hi")
     }

@@ -27,7 +27,6 @@ export default class CreateGroupsComponent extends React.Component  {
             })
             const users_list = response.data
             this.setState({unfiltered_users: users_list, filtered_users:users_list, all_users: users_list})
-            console.log(this.state.unfiltered_users)
         }
 
         handleModalShowHide() {
@@ -129,9 +128,9 @@ export default class CreateGroupsComponent extends React.Component  {
                                     </Form.Group>
                                     <ul className="list-group join-group">
                                     {
-                                        this.state.filtered_users.map((user) =>
+                                        this.state.filtered_users.map((user,i) =>
                                         (
-                                            <li className="list-group-item">{user.username} <Button className="join-button"  onClick={() => this.addMember(user.id)}>+</Button></li>
+                                            <li key={i} className="list-group-item">{user.username} <Button className="join-button"  onClick={() => this.addMember(user.id)}>+</Button></li>
                                         ))
                                     }
                                     </ul>

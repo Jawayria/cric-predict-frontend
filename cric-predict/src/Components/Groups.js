@@ -32,7 +32,6 @@ export default class GroupComponent extends React.Component  {
     console.log(response.data)
     const groups_list = response.data
     console.log("groups")
-    console.log(groups_list)
 
     groups_list['public_groups'].map((group) => (
         group.user_count=group.users.length
@@ -57,7 +56,6 @@ export default class GroupComponent extends React.Component  {
     joinGroup = async (users,group) => {
         const user_id = localStorage.getItem('user_id');
         users.push(Number(user_id));
-        console.log(users);
         await axios.patch('http://localhost:8000/api/group/'+group.id+'/', {"users": users},{
         headers: {
             'Authorization': "Bearer "+ localStorage.getItem('access_token')
@@ -108,8 +106,8 @@ export default class GroupComponent extends React.Component  {
                                          </Form.Group>
                                         <ul className="list-group join-group">
                                         {
-                                            this.state.filtered_public_groups.map((group) => (
-                                            <li className="list-group-item"> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button" onClick={() => this.joinGroup(group.users, group)}>+</Button></li>
+                                            this.state.filtered_public_groups.map((group,i) => (
+                                            <li className="list-group-item" key={i}> <b>{group.name}</b> ({group.user_count} members) <Button className="join-button" onClick={() => this.joinGroup(group.users, group)}>+</Button></li>
                                             ))
                                         }
                                         </ul>
@@ -130,8 +128,8 @@ export default class GroupComponent extends React.Component  {
                                             </Form.Group>
                                             <div className="row user-group">
                                                  {
-                                                      this.state.filtered_joined_groups.map((group) => (
-                                                      <div className="col-sm-12">
+                                                      this.state.filtered_joined_groups.map((group,i) => (
+                                                      <div className="col-sm-12" key={i}>
                                                         <Link to={{pathname:"./group_dashboard", group_obj: {group}}}>
                                                         <div className="card group-card">
                                                           <div className="card-body">

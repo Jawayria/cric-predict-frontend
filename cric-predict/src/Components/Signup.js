@@ -21,15 +21,17 @@ class SignupComponent extends React.Component {
         event.preventDefault();
         axios.post('http://localhost:8000/api/user/signup/', {"username": this.state.username, "password": this.state.password, "password2": this.state.password2})
         .then(res => {
-          console.log(res.data);
           window.localStorage.setItem('access_token', res.data['access']);
-        });
+
         this.setState ( {
             username: '',
             password: '',
             password2: '',
             loggedin: true
-        })
+        });
+        }).catch ( e => {
+            alert("Invalid Input");
+        });
     };
 
 
