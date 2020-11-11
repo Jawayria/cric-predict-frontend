@@ -21,28 +21,30 @@ export default class GroupComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    console.log("IN")
     const user_id = window.localStorage.getItem('user_id');
     console.log(user_id)
     const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }
+    }).then(res => {
+
+        const groups_list = res.data
+        console.log(groups_list)
+
+        groups_list['public_groups'].map((group) => (
+            group.user_count=group.users.length
+        ))
+
+        groups_list['joined_groups'].map((group) => (
+            group.user_count=group.users.length
+        ))
+
+        this.setState({'public_groups':[...groups_list['public_groups']], 'filtered_public_groups':[...groups_list['public_groups']],
+                        'joined_groups': groups_list['joined_groups'], 'filtered_joined_groups':[...groups_list['joined_groups']]})
+    }).catch(err => {
+        alert(err)
     })
-    console.log(response.data)
-    const groups_list = response.data
-    console.log("groups")
-
-    groups_list['public_groups'].map((group) => (
-        group.user_count=group.users.length
-    ))
-
-    groups_list['joined_groups'].map((group) => (
-        group.user_count=group.users.length
-    ))
-
-    this.setState({'public_groups':[...groups_list['public_groups']], 'filtered_public_groups':[...groups_list['public_groups']],
-                    'joined_groups': groups_list['joined_groups'], 'filtered_joined_groups':[...groups_list['joined_groups']]})
     }
 
     filterPublicGroupList = async (event) => {

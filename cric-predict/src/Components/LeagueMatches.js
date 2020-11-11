@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import axios from 'axios';
 import private_icon from './private.jpg';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import WebSocketInstance from '../Services/MatchesWebSocketService.js' ;
 
 export default class UserGroupsComponent extends React.Component  {
 
@@ -15,21 +16,15 @@ export default class UserGroupsComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    const ws = new WebSocket("ws://localhost:8000/matches-data/")
-    ws.onopen = () => {
-        ws.send(this.state.league_id.toString())
-    }
-    ws.onmessage = e => {
-        const matches_list = JSON.parse(e.data)
-        matches_list.map(match => {
-            match.date = new Date(match.time).toLocaleDateString()
-            match.time = new Date(match.time).toLocaleTimeString()
-        })
 
+    WebSocketInstance.waitForSocketConnection(()=>{
+        WebSocketInstance.addCallback(this.update_matches.bind(this))
+        WebSocketInstance.sendRequest(this.state.league_id.toString())
+        });
+  }
+    update_matches(matches_list) {
         this.setState({matches: matches_list})
     }
-  }
-
 
   render() {
   return (
