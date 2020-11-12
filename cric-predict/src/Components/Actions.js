@@ -13,7 +13,6 @@ export default class ActionsComponent extends React.Component
         constructor(props)
         {
             super(props);
-            console.log(props);
             this.state = {
                 group : this.props.group
             }

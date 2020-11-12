@@ -34,8 +34,6 @@ export default class MemberListComponent extends React.Component  {
             user.is_member=false
         }
     }))
-    console.log(users_list)
-    users_list.map(user=>console.log(user.id));
     this.setState({group_members: [...users_list], filtered_members:[...users_list]});
 }
 

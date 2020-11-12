@@ -19,20 +19,14 @@ export default class AddLeagueComponent extends React.Component  {
         }
 
         async componentDidMount() {
-            console.log("Hi")
             const all_leagues_response = await axios.get('http://localhost:8000/api/contest/league/get/')
             let all_leagues_list = all_leagues_response.data
-
-            console.log("Here")
-            console.log(all_leagues_list)
             const group_leagues_response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
                     headers: {
                     'Authorization': "Bearer "+ localStorage.getItem('access_token')
                     }
             })
             const group_leagues_list = group_leagues_response.data
-            console.log("GRGGRGRG")
-            console.log(group_leagues_list)
             all_leagues_list=all_leagues_list.filter(league => !group_leagues_list.includes(league.id))
             this.setState({unfiltered_leagues: all_leagues_list, filtered_leagues:all_leagues_list, all_leagues: all_leagues_list})
         }
@@ -55,9 +49,6 @@ export default class AddLeagueComponent extends React.Component  {
         handleSubmit = async (event) => {
             event.preventDefault();
             this.state.league_selected.groups.push(this.state.group_id);
-            console.log("HFHHDHFHD")
-            console.log(this.state.league_selected.id);
-            console.log(this.state.league_selected.groups);
                 await axios.patch('http://localhost:8000/api/contest/league/'+this.state.league_selected.id+'/', {"groups": this.state.league_selected.groups },{
                 headers: {
                     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
