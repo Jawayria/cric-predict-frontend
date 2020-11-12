@@ -7,33 +7,39 @@ import AddLeague from "./AddLeague";
 import AddMember from "./AddMember";
 import LeaveGroup from "./LeaveGroup";
 import jwt from "jsonwebtoken";
+import {connect} from 'react-redux';
 
-export default class ActionsComponent extends React.Component
+class ActionsComponent extends React.Component
 {
         constructor(props)
         {
             super(props);
-            console.log(props);
-            this.state = {
-                group : this.props.group
-            }
         }
 
         render (){
-            if(localStorage.getItem('user_id') == this.state.group.admin)
+            if(localStorage.getItem('user_id') == this.props.group.admin)
             {
                 return (
                 <div className="row">
-                    <AddLeague group_id={this.state.group.id} />
-                    <AddMember group_id={this.state.group.id} group_members={this.state.group.users} />
+                    <AddLeague group_id={this.props.group.id} />
+                    <AddMember group_id={this.props.group.id} group_members={this.props.group.users} />
                 </div>
                 )
             }
             else {
                 return (
-                        <LeaveGroup group_id={this.state.group.id} group_members={this.state.group.users}/>
+                        <LeaveGroup group_id={this.props.group.id} group_members={this.props.group.users}/>
                 );
             }
         }
 
 }
+
+const mapStateToProps = state => {
+    return {
+        group: state.group
+    };
+}
+
+export default connect(mapStateToProps)(ActionsComponent)
+

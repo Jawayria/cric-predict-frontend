@@ -2,14 +2,13 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {connect} from 'react-redux';
 
-
-export default class MemberListComponent extends React.Component  {
+class MemberListComponent extends React.Component  {
 
   constructor(props){
     super(props);
     this.state = {
-    group_member_ids: [...this.props.group_members],
     filtered_members:[],
     group_members: [],
     };
@@ -27,15 +26,13 @@ export default class MemberListComponent extends React.Component  {
     });
     const users_list = response.data
     users_list.map((user => {
-        if (this.state.group_member_ids.includes(user.id)){
+        if (this.props.group_member_ids.includes(user.id)){
             user.is_member=true
         }
         else{
             user.is_member=false
         }
     }))
-    console.log(users_list)
-    users_list.map(user=>console.log(user.id));
     this.setState({group_members: [...users_list], filtered_members:[...users_list]});
 }
 
@@ -64,3 +61,11 @@ export default class MemberListComponent extends React.Component  {
      );
   }
  }
+
+const mapStateToProps = state => {
+    return {
+        group_member_ids: state.group.users
+    };
+}
+
+export default connect(mapStateToProps)(MemberListComponent)

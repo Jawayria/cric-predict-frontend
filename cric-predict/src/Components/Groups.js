@@ -6,9 +6,11 @@ import {Redirect, Link} from "react-router-dom";
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {setActiveGroup} from '../Actions/ActionCreators'
 
 
-export default class GroupComponent extends React.Component  {
+class GroupComponent extends React.Component  {
 
   constructor(props){
     super(props);
@@ -132,7 +134,7 @@ export default class GroupComponent extends React.Component  {
                                                  {
                                                       this.state.filtered_joined_groups.map((group,i) => (
                                                       <div className="col-sm-12" key={i}>
-                                                        <Link to={{pathname:"./group_dashboard", group_obj: {group}}}>
+                                                        <Link to={{pathname:"./group_dashboard"}} onClick={() =>this.props.setActiveGroup(group)}>
                                                         <div className="card group-card">
                                                           <div className="card-body">
                                                           <div className="row">
@@ -161,3 +163,9 @@ export default class GroupComponent extends React.Component  {
 
   }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+      setActiveGroup: (group_obj) => dispatch(setActiveGroup(group_obj))
+    };
+}
+export default connect(null, mapDispatchToProps)(GroupComponent);

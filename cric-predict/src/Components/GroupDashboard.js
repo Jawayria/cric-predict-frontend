@@ -7,16 +7,14 @@ import Actions from "./Actions";
 import MembersList from "./MembersList";
 import GroupLeagues from "./GroupLeagues";
 import jwt from "jsonwebtoken";
+import {connect} from "react-redux";
 
-export default class GroupDashboardComponent extends React.Component
+class GroupDashboardComponent extends React.Component
 {
         constructor(props)
         {
             super(props);
-            console.log(props.location.group_obj.group);
-            this.state = {
-                group : props.location.group_obj.group
-            }
+            console.log('this.props.group')
         }
 
         render (){
@@ -34,14 +32,14 @@ export default class GroupDashboardComponent extends React.Component
                 <div className='image-background'>
                    <div className="container group-container" >
                         <div className="background">
-                            <h1> {this.state.group.name} </h1>
+                            <h1> {this.props.group.name} </h1>
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <Actions group={this.state.group}/>
-                                    <MembersList group_members={this.state.group.users}/>
+                                    <Actions/>
+                                    <MembersList/>
                                 </div>
                                 <div className="col-sm-8">
-                                    <GroupLeagues group_id={this.state.group.id}/>
+                                    <GroupLeagues/>
                                 </div>
                             </div>
                         </div>
@@ -52,6 +50,10 @@ export default class GroupDashboardComponent extends React.Component
 
 }
 
+const mapStateToProps = state => {
+    return {
+        group: state.group
+    };
+}
 
-
-
+export default connect(mapStateToProps)(GroupDashboardComponent)
