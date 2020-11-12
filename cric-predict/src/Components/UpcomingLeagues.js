@@ -1,19 +1,36 @@
 import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
+import WebSocketInstance from '../Services/LeaguesWebSocketService.js' ;
 
 export default class UpcomingLeaguesComponent extends React.Component  {
 
   constructor(props){
     super(props);
     this.state = {leagues: []};
+    this.waitForSocketConnection(()=>{
+        WebSocketInstance.addCallback(this.update_leagues.bind(this))
+        WebSocketInstance.sendRequest()
+        });
   }
 
-  async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/league/get/')
-    const leagues_list = response.data
+   waitForSocketConnection(callback) {
+    const component = this;
+    setTimeout(
+      function () {
+        if (WebSocketInstance.state() === 1) {
+          callback();
+          return;
+        } else {
+          component.waitForSocketConnection(callback);
+        }
+    }, 100);
+  }
+
+
+  update_leagues(leagues_list) {
     this.setState({leagues: leagues_list})
-}
+  }
 
   render() {
   return (

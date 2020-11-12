@@ -13,7 +13,6 @@ export default class GroupDashboardComponent extends React.Component
         constructor(props)
         {
             super(props);
-            console.log(props.location.group_obj.group);
             this.state = {
                 group : props.location.group_obj.group
             }

@@ -10,8 +10,22 @@ import Footer from "./Components/Footer";
 import Groups from "./Components/Groups";
 import GroupDashboard from "./Components/GroupDashboard";
 import LeagueDashboard from "./Components/LeagueDashboard";
+import LeagueWebSocketInstance from "./Services/LeaguesWebSocketService";
+import MatchWebSocketInstance from "./Services/MatchesWebSocketService";
 
-function App() {
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    LeagueWebSocketInstance.connect();
+    MatchWebSocketInstance.connect();
+  }
+
+  handleLoginSubmit = (username) => {
+    this.setState({ loggedIn: true, username: username });
+  }
+
+  render() {
+
   return (
       <BrowserRouter>
         <Header/>
@@ -28,8 +42,4 @@ function App() {
       </BrowserRouter>
   );
 }
-
-export default App;
-
-
-
+}

@@ -17,7 +17,6 @@ export default class MemberListComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    console.log(this.state.league_id);
     const response = await axios.get('http://localhost:8000/api/contest/todays_matches/'+this.state.league_id+"/"
                      +this.state.group_id+"/"+localStorage.getItem('user_id')+"/",{
         headers: {
@@ -25,8 +24,6 @@ export default class MemberListComponent extends React.Component  {
         }
     })
     const matches_list = response.data
-    console.log("Todays Matches")
-    console.log(matches_list)
     matches_list.map(match => {
     match.date = new Date(match.time).toLocaleDateString()
     match.time = new Date(match.time).toLocaleTimeString()

@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import axios from 'axios';
 import private_icon from './private.jpg';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import WebSocketInstance from '../Services/MatchesWebSocketService.js' ;
 
 export default class UserGroupsComponent extends React.Component  {
 
@@ -15,21 +16,29 @@ export default class UserGroupsComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    console.log(this.state.league_id);
-    const response = await axios.get('http://localhost:8000/api/contest/league_matches/'+this.state.league_id+"/",{
-        headers: {
-        'Authorization': "Bearer "+ localStorage.getItem('access_token')
-        }
-    })
-    const matches_list = response.data
-    matches_list.map(match => {
-    match.date = new Date(match.time).toLocaleDateString()
-    match.time = new Date(match.time).toLocaleTimeString()
-    })
 
-    this.setState({matches: matches_list})
+    this.waitForSocketConnection(()=>{
+        WebSocketInstance.addCallback(this.update_matches.bind(this))
+        WebSocketInstance.sendRequest(this.state.league_id.toString())
+        });
   }
 
+  waitForSocketConnection(callback) {
+    const component = this;
+    setTimeout(
+      function () {
+        if (WebSocketInstance.state() === 1) {
+          callback();
+          return;
+        } else {
+          component.waitForSocketConnection(callback);
+        }
+    }, 100);
+  }
+
+    update_matches(matches_list) {
+        this.setState({matches: matches_list})
+    }
 
   render() {
   return (

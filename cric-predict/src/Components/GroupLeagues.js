@@ -21,13 +21,13 @@ export default class UserGroupsComponent extends React.Component  {
   }
 
   async componentDidMount() {
+
     const response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
         headers: {
         'Authorization': "Bearer "+window.localStorage.getItem('access_token')
         }
     })
     const leagues_list = response.data
-    console.log(leagues_list)
 
     this.setState({leagues: leagues_list, filtered_leagues:leagues_list})
   }
