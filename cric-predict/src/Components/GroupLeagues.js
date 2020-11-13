@@ -12,21 +12,17 @@ class GroupLeaguesComponent extends React.Component  {
   constructor(props){
     super(props);
     this.state = {
-    leagues: [],
     filtered_leagues: [],
     };
   }
 
   filterLeagueList = async (event) => {
-      this.setState({filtered_leagues:this.state.leagues.filter(league => league.name.toLowerCase().includes(event.target.value.toLowerCase()))});
+      this.setState({filtered_leagues:this.props.leagues_list.filter(league => league.name.toLowerCase().includes(event.target.value.toLowerCase()))});
   }
 
   async componentDidMount() {
-    console.log("GROUP LEAGUES");
-//    const { dispatch, setGroupLeagues} = this.props;
-    const leagues_list = this.props.setGroupLeagues()
-   // const leagues_list = ['LEAL','erjej']
-    this.setState({leagues: leagues_list, filtered_leagues:leagues_list})
+    await this.props.setGroupLeagues()
+    this.setState({filtered_leagues:this.props.leagues_list})
   }
 
 
@@ -72,7 +68,8 @@ class GroupLeaguesComponent extends React.Component  {
 
 const mapStateToProps = state => {
     return {
-        group_id: state.group.id
+        group_id: state.group.id,
+        leagues_list: state.leagues
     };
 }
 
@@ -82,4 +79,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps)(GroupLeaguesComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(GroupLeaguesComponent)
