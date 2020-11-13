@@ -24,7 +24,6 @@ class GroupComponent extends React.Component  {
 
   async componentDidMount() {
     const user_id = window.localStorage.getItem('user_id');
-    console.log(user_id)
     const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
@@ -32,7 +31,6 @@ class GroupComponent extends React.Component  {
     }).then(res => {
 
         const groups_list = res.data
-        console.log(groups_list)
 
         groups_list['public_groups'].map((group) => (
             group.user_count=group.users.length

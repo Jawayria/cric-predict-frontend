@@ -14,7 +14,6 @@ class GroupDashboardComponent extends React.Component
         constructor(props)
         {
             super(props);
-            console.log('this.props.group')
         }
 
         render (){

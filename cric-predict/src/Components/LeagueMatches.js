@@ -17,11 +17,25 @@ export default class UserGroupsComponent extends React.Component  {
 
   async componentDidMount() {
 
-    WebSocketInstance.waitForSocketConnection(()=>{
+    this.waitForSocketConnection(()=>{
         WebSocketInstance.addCallback(this.update_matches.bind(this))
         WebSocketInstance.sendRequest(this.state.league_id.toString())
         });
   }
+
+  waitForSocketConnection(callback) {
+    const component = this;
+    setTimeout(
+      function () {
+        if (WebSocketInstance.state() === 1) {
+          callback();
+          return;
+        } else {
+          component.waitForSocketConnection(callback);
+        }
+    }, 100);
+  }
+
     update_matches(matches_list) {
         this.setState({matches: matches_list})
     }
