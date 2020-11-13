@@ -25,7 +25,7 @@ class GroupComponent extends React.Component  {
 
   async componentDidMount() {
     const user_id = window.localStorage.getItem('user_id');
-    const response = await axios.get(BASE_URL+'group/'+user_id+"/categorized_groups/",{\
+    const response = await axios.get(BASE_URL+'group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }

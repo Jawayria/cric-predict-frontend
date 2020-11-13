@@ -23,13 +23,7 @@ export default class AddLeagueComponent extends React.Component  {
             console.log(BASE_URL)
             const all_leagues_response = await axios.get(BASE_URL+'contest/league/get/')
             let all_leagues_list = all_leagues_response.data
-<<<<<<< HEAD
-
-            console.log(all_leagues_list)
             const group_leagues_response = await axios.get(BASE_URL+'contest/group_leagues/'+this.state.group_id+"/",{
-=======
-            const group_leagues_response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
->>>>>>> e604fcf9a88122468bcb6aaaefe7587229634557
                     headers: {
                     'Authorization': "Bearer "+ localStorage.getItem('access_token')
                     }
