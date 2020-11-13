@@ -18,16 +18,13 @@ export default class UpcomingLeaguesComponent extends React.Component  {
     const component = this;
     setTimeout(
       function () {
-        // Check if websocket state is OPEN
         if (WebSocketInstance.state() === 1) {
-          console.log("Connection is made")
           callback();
           return;
         } else {
-          console.log("wait for connection...")
           component.waitForSocketConnection(callback);
         }
-    }, 100); // wait 100 milisecond for the connection...
+    }, 100);
   }
 
 
