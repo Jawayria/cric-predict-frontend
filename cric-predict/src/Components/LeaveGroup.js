@@ -2,6 +2,7 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button}  from 'react-bootstrap';
+import {BASE_URL} from '../base_url.js';
 
 export default class LeaveGroupsComponent extends React.Component  {
 
@@ -16,7 +17,7 @@ export default class LeaveGroupsComponent extends React.Component  {
         leaveGroup = async() => {
             const user_id = window.localStorage.getItem('user_id');
             const users = this.state.group_members.filter(id => id != user_id)
-            await axios.patch('http://localhost:8000/api/group/'+this.state.group_id+'/', {"users": users},{
+            await axios.patch(BASE_URL+'group/'+this.state.group_id+'/', {"users": users},{
             headers: {
                 'Authorization': "Bearer "+window.localStorage.getItem('access_token')
             }
@@ -25,7 +26,7 @@ export default class LeaveGroupsComponent extends React.Component  {
                 alert("You left the group");
                 if (users.length == 0 )
                 {
-                        await axios.delete('http://localhost:8000/api/group/'+this.state.group_id+'/', {
+                        await axios.delete(BASE_URL+'group/'+this.state.group_id+'/', {
                         headers: {
                             'Authorization': "Bearer "+window.localStorage.getItem('access_token')
                         }

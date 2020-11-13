@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col, Container}  from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {BASE_URL} from '../base_url.js';
 
 class TodaysMatchesComponent extends React.Component  {
 
@@ -16,7 +17,7 @@ class TodaysMatchesComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/todays_matches/'+this.state.league_id+"/"
+    const response = await axios.get(BASE_URL+'contest/todays_matches/'+this.state.league_id+"/"
                      +this.props.group_id+"/"+localStorage.getItem('user_id')+"/",{
         headers: {
         'Authorization': "Bearer "+ localStorage.getItem('access_token')
@@ -35,7 +36,7 @@ class TodaysMatchesComponent extends React.Component  {
   handleSubmit = async(event, match) => {
             event.preventDefault();
     const datetime = new Date();
-    await axios.post('http://localhost:8000/api/contest/prediction/',
+    await axios.post(BASE_URL+'contest/prediction/',
         {"match":match.id,"prediction":match.temp_prediction,"time":datetime.toISOString(),"user":localStorage.getItem("user_id"),"group":this.props.group_id}, {
         headers: {
         'Authorization': "Bearer "+ localStorage.getItem('access_token')

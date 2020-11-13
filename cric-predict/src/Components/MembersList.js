@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
 import {connect} from 'react-redux';
+import {BASE_URL} from '../base_url.js';
 
 class MemberListComponent extends React.Component  {
 
@@ -19,7 +20,7 @@ class MemberListComponent extends React.Component  {
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/user/list/' ,{
+    const response = await axios.get(BASE_URL+'user/list/' ,{
     headers: {
     'Authorization': "Bearer "+localStorage.getItem('access_token')
     }

@@ -7,7 +7,8 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
 import {connect} from 'react-redux';
-import {setActiveGroup} from '../Actions/ActionCreators'
+import {setActiveGroup} from '../Actions/ActionCreators';
+import {BASE_URL} from '../base_url.js';
 
 
 class GroupComponent extends React.Component  {
@@ -25,7 +26,7 @@ class GroupComponent extends React.Component  {
   async componentDidMount() {
     const user_id = window.localStorage.getItem('user_id');
     console.log(user_id)
-    const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/categorized_groups/",{
+    const response = await axios.get(BASE_URL+'group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }
@@ -60,7 +61,7 @@ class GroupComponent extends React.Component  {
     joinGroup = async (users,group) => {
         const user_id = localStorage.getItem('user_id');
         users.push(Number(user_id));
-        await axios.patch('http://localhost:8000/api/group/'+group.id+'/', {"users": users},{
+        await axios.patch(BASE_URL+'group/'+group.id+'/', {"users": users},{
         headers: {
             'Authorization': "Bearer "+ localStorage.getItem('access_token')
         }

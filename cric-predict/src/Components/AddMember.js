@@ -2,6 +2,7 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {BASE_URL} from '../base_url.js';
 
 export default class AddMemberComponent extends React.Component  {
 
@@ -20,7 +21,7 @@ export default class AddMemberComponent extends React.Component  {
         }
 
         async componentDidMount() {
-            const response = await axios.get('http://localhost:8000/api/user/list/',{
+            const response = await axios.get(BASE_URL+'user/list/',{
             headers: {
                 'Authorization': "Bearer "+window.localStorage.getItem('access_token')
             }
@@ -47,7 +48,7 @@ export default class AddMemberComponent extends React.Component  {
         handleSubmit = async (event) => {
             event.preventDefault();
             this.state.group_members.push(this.state.user_id);
-                await axios.patch('http://localhost:8000/api/group/'+this.state.group_id+'/', {"users": this.state.group_members },{
+                await axios.patch(BASE_URL+'group/'+this.state.group_id+'/', {"users": this.state.group_members },{
                 headers: {
                     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
                 }
