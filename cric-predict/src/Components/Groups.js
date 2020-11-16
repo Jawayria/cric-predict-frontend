@@ -6,9 +6,12 @@ import {Redirect, Link} from "react-router-dom";
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {setActiveGroup} from '../Actions/ActionCreators';
+import {BASE_URL} from '../base_url.js';
 
 
-export default class GroupComponent extends React.Component  {
+class GroupComponent extends React.Component  {
 
   constructor(props){
     super(props);
@@ -22,7 +25,7 @@ export default class GroupComponent extends React.Component  {
 
   async componentDidMount() {
     const user_id = window.localStorage.getItem('user_id');
-    const response = await axios.get('http://localhost:8000/api/group/'+user_id+"/categorized_groups/",{
+    const response = await axios.get(BASE_URL+'group/'+user_id+"/categorized_groups/",{
     headers: {
     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
     }
@@ -56,7 +59,7 @@ export default class GroupComponent extends React.Component  {
     joinGroup = async (users,group) => {
         const user_id = localStorage.getItem('user_id');
         users.push(Number(user_id));
-        await axios.patch('http://localhost:8000/api/group/'+group.id+'/', {"users": users},{
+        await axios.patch(BASE_URL+'group/'+group.id+'/', {"users": users},{
         headers: {
             'Authorization': "Bearer "+ localStorage.getItem('access_token')
         }
@@ -130,7 +133,7 @@ export default class GroupComponent extends React.Component  {
                                                  {
                                                       this.state.filtered_joined_groups.map((group,i) => (
                                                       <div className="col-sm-12" key={i}>
-                                                        <Link to={{pathname:"./group_dashboard", group_obj: {group}}}>
+                                                        <Link to={{pathname:"./group_dashboard"}} onClick={() =>this.props.setActiveGroup(group)}>
                                                         <div className="card group-card">
                                                           <div className="card-body">
                                                           <div className="row">
@@ -159,3 +162,9 @@ export default class GroupComponent extends React.Component  {
 
   }
 }
+const mapDispatchToProps = dispatch => {
+    return {
+      setActiveGroup: (group_obj) => dispatch(setActiveGroup(group_obj))
+    };
+}
+export default connect(null, mapDispatchToProps)(GroupComponent);

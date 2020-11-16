@@ -3,6 +3,7 @@ import '../Stylesheets/App.css';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
+import {BASE_URL} from '../base_url.js';
 
 
 class LoginComponent extends React.Component {
@@ -19,7 +20,7 @@ class LoginComponent extends React.Component {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        await axios.post('http://localhost:8000/api/user/login/', {"username": this.state.username, "password": this.state.password})
+        await axios.post(BASE_URL+'user/login/', {"username": this.state.username, "password": this.state.password})
         .then(res => {
           window.localStorage.setItem('access_token', res.data['access']);
           window.localStorage.setItem('refresh_token', res.data['refresh']);

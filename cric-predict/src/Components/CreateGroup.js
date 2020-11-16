@@ -2,6 +2,7 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {BASE_URL} from '../base_url.js';
 
 
 export default class CreateGroupsComponent extends React.Component  {
@@ -20,7 +21,7 @@ export default class CreateGroupsComponent extends React.Component  {
         }
 
         async componentDidMount() {
-            const response = await axios.get('http://localhost:8000/api/user/list/',{
+            const response = await axios.get(BASE_URL+'user/list/',{
             headers: {
                 'Authorization': "Bearer "+window.localStorage.getItem('access_token')
             }
@@ -45,7 +46,7 @@ export default class CreateGroupsComponent extends React.Component  {
 
         handleSubmit = async (event) => {
             event.preventDefault();
-            await axios.post('http://localhost:8000/api/group/', {"name": this.state.name, "privacy": this.state.privacy,
+            await axios.post(BASE_URL+'group/', {"name": this.state.name, "privacy": this.state.privacy,
                         "users": this.state.selected_users},{
                         headers: {
                             'Authorization': "Bearer "+localStorage.getItem('access_token')
@@ -54,7 +55,7 @@ export default class CreateGroupsComponent extends React.Component  {
             .then( async (res) => {
                 const user_id = localStorage.getItem('user_id');
                 this.state.selected_users.push(user_id);
-                await axios.patch('http://localhost:8000/api/group/'+res.data.id+'/', {"users": this.state.selected_users },{
+                await axios.patch(BASE_URL+'group/'+res.data.id+'/', {"users": this.state.selected_users },{
                 headers: {
                     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
                 }

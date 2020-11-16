@@ -4,37 +4,29 @@ import axios from 'axios';
 import private_icon from './private.jpg';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {setGroupLeagues} from '../Actions/ActionCreators'
 
-export default class UserGroupsComponent extends React.Component  {
+class GroupLeaguesComponent extends React.Component  {
 
   constructor(props){
     super(props);
     this.state = {
-    leagues: [],
     filtered_leagues: [],
-    group_id: this.props.group_id,
     };
   }
 
   filterLeagueList = async (event) => {
-      this.setState({filtered_leagues:this.state.leagues.filter(league => league.name.toLowerCase().includes(event.target.value.toLowerCase()))});
+      this.setState({filtered_leagues:this.props.leagues_list.filter(league => league.name.toLowerCase().includes(event.target.value.toLowerCase()))});
   }
 
   async componentDidMount() {
-
-    const response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
-        headers: {
-        'Authorization': "Bearer "+window.localStorage.getItem('access_token')
-        }
-    })
-    const leagues_list = response.data
-
-    this.setState({leagues: leagues_list, filtered_leagues:leagues_list})
+    await this.props.setGroupLeagues()
+    this.setState({filtered_leagues:this.props.leagues_list})
   }
 
 
   render() {
-  const group_id_copy = this.state.group_id;
   return (
         <div className="card">
             <div className="card-body">
@@ -51,7 +43,7 @@ export default class UserGroupsComponent extends React.Component  {
                          {
                               this.state.filtered_leagues.map((league) => (
                               <div className="col-sm-12">
-                              <Link to={{pathname:"./league_dashboard", league_obj: {league}, group_id:group_id_copy }}>
+                              <Link to={{pathname:"./league_dashboard", league_obj: {league} }}>
                                 <div className="card group-card">
                                   <div className="card-body">
                                   <div className="row">
@@ -73,3 +65,18 @@ export default class UserGroupsComponent extends React.Component  {
   );
   }
  }
+
+const mapStateToProps = state => {
+    return {
+        group_id: state.group.id,
+        leagues_list: state.leagues
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+      setGroupLeagues: () => dispatch(setGroupLeagues())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupLeaguesComponent)

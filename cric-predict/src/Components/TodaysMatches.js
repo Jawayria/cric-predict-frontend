@@ -2,23 +2,23 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col, Container}  from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {BASE_URL} from '../base_url.js';
 
-
-export default class MemberListComponent extends React.Component  {
+class TodaysMatchesComponent extends React.Component  {
 
   constructor(props){
     super(props);
     this.state = {
         league_id: this.props.league_id,
         matches: ['match1', 'match2'],
-        group_id: this.props.group_id,
         prediction: [],
     }
   }
 
   async componentDidMount() {
-    const response = await axios.get('http://localhost:8000/api/contest/todays_matches/'+this.state.league_id+"/"
-                     +this.state.group_id+"/"+localStorage.getItem('user_id')+"/",{
+    const response = await axios.get(BASE_URL+'contest/todays_matches/'+this.state.league_id+"/"
+                     +this.props.group_id+"/"+localStorage.getItem('user_id')+"/",{
         headers: {
         'Authorization': "Bearer "+ localStorage.getItem('access_token')
         }
@@ -36,9 +36,8 @@ export default class MemberListComponent extends React.Component  {
   handleSubmit = async(event, match) => {
             event.preventDefault();
     const datetime = new Date();
-    console.log("Submitting");
-    await axios.post('http://localhost:8000/api/contest/prediction/',
-        {"match":match.id,"prediction":match.temp_prediction,"time":datetime.toISOString(),"user":localStorage.getItem("user_id"),"group":this.state.group_id}, {
+    await axios.post(BASE_URL+'contest/prediction/',
+        {"match":match.id,"prediction":match.temp_prediction,"time":datetime.toISOString(),"user":localStorage.getItem("user_id"),"group":this.props.group_id}, {
         headers: {
         'Authorization': "Bearer "+ localStorage.getItem('access_token')
         }
@@ -53,10 +52,7 @@ export default class MemberListComponent extends React.Component  {
   }
 
     handleChange = (event, match) => {
-            alert("INSIDE")
-            console.log(match.temp_prediction)
             match.temp_prediction=event.target.value
-            console.log(match.temp_prediction)
     }
 
 
@@ -106,3 +102,12 @@ export default class MemberListComponent extends React.Component  {
      );
   }
  }
+
+
+const mapStateToProps = state => {
+    return {
+        group_id: state.group.id
+    };
+}
+
+export default connect(mapStateToProps)(TodaysMatchesComponent)

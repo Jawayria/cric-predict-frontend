@@ -16,7 +16,6 @@ export default class LeagueDashboardComponent extends React.Component
             super(props);
             this.state = {
                 league : props.location.league_obj.league,
-                group_id: props.location.group_id,
             }
         }
 
@@ -42,7 +41,7 @@ export default class LeagueDashboardComponent extends React.Component
                                         <LeaderBoard />
                                         <Predictions />
                                     </div>
-                                    <TodaysMatches league_id={this.state.league.id} group_id={this.state.group_id}/>
+                                    <TodaysMatches league_id={this.state.league.id}/>
                                 </div>
                                 <div className="col-sm-8">
                                     <LeagueMatches league_id={this.state.league.id}/>

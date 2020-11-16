@@ -2,6 +2,7 @@ import React from 'react';
 import '../Stylesheets/App.css';
 import axios from 'axios';
 import {Button, Modal, Form, Row, Col}  from 'react-bootstrap';
+import {BASE_URL} from '../base_url.js';
 
 export default class AddLeagueComponent extends React.Component  {
 
@@ -19,9 +20,10 @@ export default class AddLeagueComponent extends React.Component  {
         }
 
         async componentDidMount() {
-            const all_leagues_response = await axios.get('http://localhost:8000/api/contest/league/get/')
+            console.log(BASE_URL)
+            const all_leagues_response = await axios.get(BASE_URL+'contest/league/get/')
             let all_leagues_list = all_leagues_response.data
-            const group_leagues_response = await axios.get('http://localhost:8000/api/contest/group_leagues/'+this.state.group_id+"/",{
+            const group_leagues_response = await axios.get(BASE_URL+'contest/group_leagues/'+this.state.group_id+"/",{
                     headers: {
                     'Authorization': "Bearer "+ localStorage.getItem('access_token')
                     }
@@ -49,7 +51,7 @@ export default class AddLeagueComponent extends React.Component  {
         handleSubmit = async (event) => {
             event.preventDefault();
             this.state.league_selected.groups.push(this.state.group_id);
-                await axios.patch('http://localhost:8000/api/contest/league/'+this.state.league_selected.id+'/', {"groups": this.state.league_selected.groups },{
+                await axios.patch(BASE_URL+'contest/league/'+this.state.league_selected.id+'/', {"groups": this.state.league_selected.groups },{
                 headers: {
                     'Authorization': "Bearer "+window.localStorage.getItem('access_token')
                 }
