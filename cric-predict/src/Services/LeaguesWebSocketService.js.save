@@ -1,13 +1,14 @@
-import {WS_BASE_URL} from '../base_url.js';
-class MatchesWebSocketService {
+import {BASE_URL} from '../base_url.js';
+
+class LeaguesWebSocketService {
   static instance = null;
   callback = null;
 
   static getInstance() {
-    if (!MatchesWebSocketService.instance) {
-      MatchesWebSocketService.instance = new MatchesWebSocketService();
+    if (!LeaguesWebSocketService.instance) {
+      LeaguesWebSocketService.instance = new LeaguesWebSocketService();
     }
-    return MatchesWebSocketService.instance;
+    return LeaguesWebSocketService.instance;
   }
 
   constructor() {
@@ -15,21 +16,18 @@ class MatchesWebSocketService {
   }
 
   connect() {
-    this.socketRef = new WebSocket(WS_BASE_URL+"matches-data/");
+    console.log("Connected")
+    this.socketRef = new Web"leagues-data/");
     this.socketRef.onopen = () => {
       console.log('WebSocket open');
     };
     this.socketRef.onmessage = e => {
-        const matches_list = JSON.parse(e.data)
-        matches_list.map(match => {
-            match.date = new Date(match.time).toLocaleDateString()
-            match.time = new Date(match.time).toLocaleTimeString()
-        })
-
+        const parsedData = JSON.parse(e.data);
+        const command = parsedData.command;
         if (this.callback === null) {
           return;
         }
-        this.callback(matches_list);
+        this.callback(parsedData);
     };
 
     this.socketRef.onerror = e => {
@@ -43,10 +41,10 @@ class MatchesWebSocketService {
   addCallback(leaguesCallback) {
     this.callback = leaguesCallback;
   }
-  sendRequest(league_id) {
+  sendRequest() {
     if(this.socketRef.OPEN)
     {
-        this.socketRef.send(league_id)
+        this.socketRef.send("hi")
     }
   }
   waitForSocketConnection(callback){
@@ -54,6 +52,7 @@ class MatchesWebSocketService {
     const recursion = this.waitForSocketConnection;
     setTimeout(
       function () {
+
         if (socket.readyState === 1) {
           console.log("Connection is made")
           if(callback != null){
@@ -72,6 +71,6 @@ class MatchesWebSocketService {
   }
  }
 
-const WebSocketInstance = MatchesWebSocketService.getInstance();
+const WebSocketInstance = LeaguesWebSocketService.getInstance();
 
 export default WebSocketInstance;

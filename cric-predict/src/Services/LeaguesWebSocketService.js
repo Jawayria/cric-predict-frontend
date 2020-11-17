@@ -1,3 +1,4 @@
+import {WS_BASE_URL} from '../base_url.js';
 class LeaguesWebSocketService {
   static instance = null;
   callback = null;
@@ -15,7 +16,7 @@ class LeaguesWebSocketService {
 
   connect() {
     console.log("Connected")
-    this.socketRef = new WebSocket("ws://localhost:8000/leagues-data/");
+    this.socketRef = new WebSocket(WS_BASE_URL+"leagues-data/");
     this.socketRef.onopen = () => {
       console.log('WebSocket open');
     };
